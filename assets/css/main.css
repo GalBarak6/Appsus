@@ -1,6 +1,7 @@
 /* BASE */
 
 @import './basic/base.css';
+@import './basic/helpers.css';
 
 /* CMPS */
 
@@ -8,7 +9,11 @@
 @import './cmps/main-footer.css';
 @import './cmps/email-preview.css';
 @import './cmps/email-side-bar.css';
+@import './cmps/note-preview.css';
+@import './cmps/note-add.css';
+@import './cmps/note-list.css';
 
 /* PAGES */
 
-@import './pages/app-home.css'
+@import './pages/app-home.css';
+@import './pages/keep.css';

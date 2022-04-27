@@ -1,10 +1,13 @@
 import { noteService } from "../apps/keep/services/note.service.js"
 import { NoteList } from "../apps/keep/cmps/note-list.jsx"
+import { NoteFilter } from "../apps/keep/cmps/note-filter.jsx"
+import { NoteAdd } from "../apps/keep/cmps/note-add.jsx"
 
 
 export class Keep extends React.Component {
     state = {
-        notes: []
+        notes: [],
+        filterBy:null
     }
 
     componentDidMount() {
@@ -23,6 +26,8 @@ export class Keep extends React.Component {
         const { notes } = this.state
 
         return <section className="note-app">
+            <NoteFilter/>
+            <NoteAdd/>
             <NoteList notes={notes} />
         </section>
     }
