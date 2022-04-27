@@ -21,7 +21,7 @@ export class Email extends React.Component {
 
     onSetFilter = (filterBy) => {
         console.log(filterBy);
-        this.setState({filterBy}, () => {
+        this.setState({ filterBy }, () => {
             console.log(this.state.filterBy);
             this.loadEmails()
         })
@@ -30,8 +30,8 @@ export class Email extends React.Component {
     render() {
         const { emails } = this.state
         return <section className="email">
-            <EmailFilter onSetFilter={this.onSetFilter}/>
-            <EmailList emails={emails}/>
+            <EmailFilter onSetFilter={this.onSetFilter} />
+            <EmailList emails={emails} />
             <EmailSideBar />
         </section>
     }
