@@ -2,7 +2,8 @@ import { storageService } from '../../../services/storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 export const emailService = {
-    query
+    query,
+    getById
 }
 
 const KEY = 'emailDB'
@@ -21,16 +22,26 @@ function query() {
         _createEmails()
         _saveToStorage()
     }
-    return emails
+    console.log(emails);
+    return Promise.resolve(emails)
 }
+
+function getById(emailId) {
+    const emails = _loadFromStorage()
+    const email = emails.find(email => {
+        return email.id === emailId
+    })
+    return Promise.resolve(email)
+}
+
 
 function _createEmails() {
     const emails = [
-        _createEmail('How are you', 'i remember you from our last meeting!', 'user@appsus.com'),
-        _createEmail('hey hey hey', 'tell me what is going on', 'user@appsus.com'),
-        _createEmail('testing number 3', utilService.makeLorem(20), 'user@gmail.com'),
-        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(20), 'user@gmail.com'),
-        _createEmail('birthday party!', utilService.makeLorem(20), 'user@gmail.com')
+        _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com'),
+        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com'),
+        _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com'),
+        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com'),
+        _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com')
     ]
     gEmails = emails
     console.log(gEmails);
@@ -46,9 +57,6 @@ function _createEmail(subject, body, to) {
         to,
     }
 }
-
-
-
 
 
 const criteria = {

@@ -5,3 +5,9 @@
 /* CMPS */
 
 @import './cmps/main-header.css';
+@import './cmps/main-footer.css';
+@import './cmps/email-preview.css';
+
+/* PAGES */
+
+@import './pages/app-home.css'

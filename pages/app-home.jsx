@@ -1,6 +1,7 @@
 
 export function Home() {
     return <section className="app-home">
-        Hello from home
+        <div className="app-home-content">
+        </div>
     </section>
 }
