@@ -4,8 +4,10 @@ import { emailService } from "../services/email-service.js"
 export class EmailDetails extends React.Component {
 
     state = {
-        email: null,
+        email: null
     }
+
+    removeEvent
 
     componentDidMount() {
         this.loadEmail()
@@ -37,6 +39,7 @@ export class EmailDetails extends React.Component {
             {email.sentAt}
             {email.body}
             <button onClick={this.onDeleteEmail}>DELETE</button>
+            <img src="/assets/icons/back.png" alt="" onClick={this.onGoBack} />
         </section>
     }
 }

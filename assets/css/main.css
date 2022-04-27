@@ -12,8 +12,11 @@
 @import './cmps/note-preview.css';
 @import './cmps/note-add.css';
 @import './cmps/note-list.css';
+@import './cmps/email-filter.css';
+@import './cmps/email-list.css';
 
 /* PAGES */
 
 @import './pages/app-home.css';
 @import './pages/keep.css';
+@import './pages/email-details.css';

@@ -1,12 +1,16 @@
 .email-preview {
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-width: 200px;
+    border: 1px solid black;
 }
 
 .email-preview h3 {
     font-weight: normal;
 }
 
-.email-preview .read {
+.email-preview .unread {
     font-weight: bold;
 }

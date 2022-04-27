@@ -16,12 +16,28 @@ const loggedinUser = {
     fullname: 'Mahatma Appsus'
 }
 
-function query() {
+function query(filterBy) {
     console.log('query');
-    const emails = _loadFromStorage()
+    let emails = _loadFromStorage()
     if (!emails) {
         _createEmails()
         _saveToStorage()
+    }
+
+    if (filterBy) {
+        let { search, type } = filterBy
+        if (type === 'all') return Promise.resolve(emails)
+        console.log(search);
+        console.log(type);
+        emails = emails.filter(email => {
+            return ((email.from.toLowerCase().includes(search.toLowerCase()) ||
+                email.subject.toLowerCase().includes(search.toLowerCase()) ||
+                email.body.toLowerCase().includes(search.toLowerCase()))) &&
+                (type === 'starred' && email.isStarred ||
+                    type === 'read' && email.isread ||
+                    type === 'unread' && !email.read)
+
+        })
     }
     console.log(emails);
     return Promise.resolve(emails)
@@ -69,7 +85,8 @@ function _createEmail(subject, body, to, status) {
         sentAt: Date.now(),
         to,
         status,
-
+        from: 'Gal',
+        isStarred: false
     }
 }
 

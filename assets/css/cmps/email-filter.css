@@ -1,0 +1,26 @@
+.email-filter {
+    display: flex;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.email-filter select {
+    border: none;
+    background-color: rgb(154, 203, 187);
+    height: 25px;
+    text-align: center;
+}
+
+.email-filter input[type="text"] {
+    border: none;
+    background-color: rgb(154, 203, 187);
+    color: lightslategrey;
+    height: 25px;
+    border-inline-end: 1px solid black;
+}
+
+.email-filter .icon {
+    padding-left: 25px;
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+    background-size: 20px;
+}

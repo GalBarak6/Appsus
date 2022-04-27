@@ -1,0 +1,9 @@
+.email-details {
+    padding: 20px 40px;
+}
+
+.email-details img {
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+}
