@@ -1,7 +1,10 @@
+import { noteService } from '../services/note.service.js'
 import {NoteAddTxt} from './note-add-txt.jsx'
+
 export class NoteAdd extends React.Component {
     state = {
-        type: null
+        type: null,
+        note: null
     }
 
     onAddNote = ({ target }) => {
@@ -11,6 +14,12 @@ export class NoteAdd extends React.Component {
     onAddDefaultNote = ()=>{
         var type = 'note-txt'
         this.setState({ type })
+    }
+
+    onSaveNote = (note) =>{
+        console.log('onSaveNote', note)
+        this.props.onSaveNote(note)
+        this.setState({type:null})
     }
 
     render() {
@@ -28,7 +37,7 @@ export class NoteAdd extends React.Component {
                 </div>
             </div>
             }
-            {type && <DynamicCmp type={type} />}
+            {type && <DynamicCmp type={type} onSaveNote={this.onSaveNote} />}
         </section>
     }
 }

@@ -1,0 +1,18 @@
+.note-add-txt{
+    padding: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
+    border: 1px solid rgb(117, 116, 116);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    width: 70%;
+}
+
+.note-add button {
+    border: black;
+    padding: 10px;
+    color: rgb(95, 96, 96);
+    cursor: pointer;
+    gap: 10px;
+}
