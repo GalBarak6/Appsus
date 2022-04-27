@@ -22,13 +22,25 @@ export class Keep extends React.Component {
             })
     }
 
+    onSaveNote = (note) =>{
+        console.log('onSaveNote', note)
+        noteService.saveNote(note)
+        this.loadNotes()
+    }
+
+    onRemoveNote = (note) =>{
+        console.log('onRemoveNote', note)
+        noteService.removeNote(note.id)
+        this.loadNotes()
+    }
+
     render() {
         const { notes } = this.state
 
         return <section className="note-app">
             <NoteFilter/>
-            <NoteAdd/>
-            <NoteList notes={notes} />
+            <NoteAdd onSaveNote={this.onSaveNote}/>
+            <NoteList notes={notes} onRemoveNote={this.onRemoveNote} />
         </section>
     }
 }

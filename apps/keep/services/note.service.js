@@ -2,24 +2,48 @@ import { storageService } from '../../../services/storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 export const noteService = {
-    query
+    query,
+    saveNote,
+    removeNote
 }
 
 const KEY = 'noteDB'
 
-let gNotes = []
+let gNotes
 
 function query() {
     var notes = _loadFromStorage()
     if (!notes) {
         notes = _createNotes()
-        gNotes = notes
-        _saveToStorage()
     }
-
+    
+    gNotes = notes
+    _saveToStorage()
     console.log(notes)
     return Promise.resolve(notes)
 }
+
+function saveNote(note){
+    if(note.id) return _updateNote(note)
+    else return _addNote(note)
+}
+
+function _addNote(note){
+
+    note.id = utilService.makeId()
+    console.log(gNotes)
+    gNotes.push(note)
+    _saveToStorage()
+    console.log(gNotes)
+    return Promise.resolve(gNotes)
+}
+
+function removeNote(noteId){
+    const noteIdx = gNotes.findIndex(note => note.id === noteId)
+    gNotes.splice(noteIdx,1)
+    _saveToStorage()
+}
+
 
 function _createNotes() {
 
