@@ -4,7 +4,7 @@ import { emailService } from "../services/email-service.js"
 export class EmailDetails extends React.Component {
 
     state = {
-        email: null
+        email: null,
     }
 
     componentDidMount() {
@@ -20,6 +20,15 @@ export class EmailDetails extends React.Component {
             })
     }
 
+    onDeleteEmail = () => {
+        emailService.deleteEmail(this.state.email.id)
+            .then(this.onGoBack())
+    }
+
+    onGoBack = () => {
+        this.props.history.push('/email')
+    }
+
     render() {
         const { email } = this.state
         if (!email) return <React.Fragment></React.Fragment>
@@ -27,6 +36,7 @@ export class EmailDetails extends React.Component {
             {email.subject}
             {email.sentAt}
             {email.body}
+            <button onClick={this.onDeleteEmail}>DELETE</button>
         </section>
     }
 }

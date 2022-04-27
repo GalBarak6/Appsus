@@ -1,0 +1,9 @@
+.email-side-bar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.email-side-bar img {
+    height: 25px;
+    width: 25px;
+}

@@ -3,7 +3,8 @@ import { utilService } from '../../../services/util.service.js'
 
 export const emailService = {
     query,
-    getById
+    getById,
+    deleteEmail
 }
 
 const KEY = 'emailDB'
@@ -34,20 +35,32 @@ function getById(emailId) {
     return Promise.resolve(email)
 }
 
+function deleteEmail(emailId) {
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => email.id !== emailId)
+    gEmails = emails
+    _saveToStorage()
+    return Promise.resolve()
+}
+
+function toggleUnread(email) {
+    email.isRead = !email.isRead
+    _saveToStorage
+}
 
 function _createEmails() {
     const emails = [
-        _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com'),
-        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com'),
-        _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com'),
-        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com'),
-        _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com')
+        _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com', 'inbox'),
+        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'inbox'),
+        _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com', 'sent'),
+        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com', 'sent'),
+        _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com', 'inbox')
     ]
     gEmails = emails
     console.log(gEmails);
 }
 
-function _createEmail(subject, body, to) {
+function _createEmail(subject, body, to, status) {
     return {
         id: utilService.makeId(),
         subject,
@@ -55,6 +68,8 @@ function _createEmail(subject, body, to) {
         isRead: false,
         sentAt: Date.now(),
         to,
+        status,
+
     }
 }
 
