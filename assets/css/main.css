@@ -1,6 +1,8 @@
 /* SETUP */
 
 @import './setup/keyframes.css';
+@import './setup/vars.css';
+@import './setup/typography.css';
 
 /* BASE */
 
@@ -20,6 +22,7 @@
 @import './cmps/email-filter.css';
 @import './cmps/email-list.css';
 @import './cmps/user-msg.css';
+@import './cmps/email-compose.css';
 
 /* PAGES */
 

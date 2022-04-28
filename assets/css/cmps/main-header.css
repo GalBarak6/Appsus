@@ -3,9 +3,23 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background: lightgreen;
+    background-color: #adb5bd;
+    font-family: squarePeg;
+    font-size: 2rem;
+    box-shadow: inset 0px -1px 0 rgba(0, 0, 0, 0.278);
+    height: 5rem;
 }
 
+.main-header nav>*:hover {
+    color: antiquewhite;
+}
+
+
+.active {
+    color: antiquewhite;
+}
+
+
 .main-header nav>*:not(last-child) {
-    padding-inline-end: 10px;
+    padding-inline-end: 15px;
 }

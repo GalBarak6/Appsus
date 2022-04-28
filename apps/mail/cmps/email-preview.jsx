@@ -23,7 +23,7 @@ export class EmailPreview extends React.Component {
                 <article className="email-preview">
                     <h3 className={subjClass}>{email.from}</h3>
                     <h3 className={subjClass}>{email.subject.substring(0, 50)}</h3>
-                    <p className={subjClass}>{email.body.substring(0, 30)}</p>
+                    <p className={subjClass}>{`${email.body.substring(0, 35)}...`}</p>
                     <h3 className={subjClass}>{email.sentAt}</h3>
                 </article>
             </Link>

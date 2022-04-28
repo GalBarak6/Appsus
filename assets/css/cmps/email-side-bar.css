@@ -2,9 +2,28 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    position: absolute;
+    top: 200px;
+    left: 10px;
 }
 
 .email-side-bar img {
     height: 25px;
     width: 25px;
+    cursor: pointer;
+}
+
+.email-side-bar .add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    padding: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.email-side-bar .add img {
+    height: 50px;
+    width: 50px;
 }

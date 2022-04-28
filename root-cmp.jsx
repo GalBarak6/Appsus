@@ -4,8 +4,7 @@ import { MainHeader } from './cmps/main-header.jsx'
 import { Email } from './pages/email.jsx'
 import { EmailDetails } from './apps/mail/pages/email-details.jsx'
 import { Keep } from './pages/keep.jsx'
-import { MainFooter } from './cmps/main-footer.jsx'
-// import { EmailCompose } from './apps/mail/cmps/email-compose.jsx'
+// import { MainFooter } from './cmps/main-footer.jsx'
 import { UserMsg } from './cmps/user-msg.jsx'
 
 const Router = ReactRouterDOM.HashRouter
@@ -24,7 +23,7 @@ export function Main() {
             </Switch>
         </section>
         <UserMsg />
-        <MainFooter />
+        {/* <MainFooter /> */}
     </Router>
 }
 

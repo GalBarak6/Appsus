@@ -6,7 +6,8 @@ export const emailService = {
     getById,
     deleteEmail,
     deletePreview,
-    countUnread
+    countUnread,
+    sendEmail
 }
 
 const KEY = 'emailDB'
@@ -21,24 +22,25 @@ const loggedinUser = {
 function query(filterBy, mailStatus) {
     console.log('query');
     console.log(mailStatus);
+    console.log(filterBy);
     let emails = _loadFromStorage()
     if (!emails) {
         _createEmails()
         _saveToStorage()
     }
 
-    emails = emails.filter(email => {
-        return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-            mailStatus === 'sent' && email.mailStatus === 'sent' ||
-            mailStatus === 'star' && email.mailStatus === 'star')
-    })
+    // emails = emails.filter(email => {
+    //     return(mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+    //         mailStatus === 'sent' && email.mailStatus === 'sent' ||
+    //         mailStatus === 'star' && email.mailStatus === 'star')
+    // })
 
     if (filterBy) {
+        console.log('filtering together');
         let { search, type } = filterBy
         console.log(search);
         console.log(type);
         emails = emails.filter(email => {
-            console.log(email.mailStatus);
             return ((email.from.toLowerCase().includes(search.toLowerCase()) ||
                 email.subject.toLowerCase().includes(search.toLowerCase()) ||
                 email.body.toLowerCase().includes(search.toLowerCase()))) &&
@@ -46,7 +48,17 @@ function query(filterBy, mailStatus) {
                     type === 'read' && email.isread ||
                     type === 'unread' && !email.read ||
                     type === 'all')
+            // (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+            //     mailStatus === 'sent' && email.mailStatus === 'sent' ||
+            //     mailStatus === 'star' && email.mailStatus === 'star')
         })
+        // } else {
+        //     console.log('else..');
+        //     emails = emails.filter(email => {
+        //         return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+        //             mailStatus === 'sent' && email.mailStatus === 'sent' ||
+        //             mailStatus === 'star' && email.mailStatus === 'star')
+        //     })
     }
     console.log(emails);
     return Promise.resolve(emails)
@@ -80,8 +92,16 @@ function deletePreview(emailId) {
 function countUnread() {
     let emails = _loadFromStorage()
     emails = emails.filter(email => !email.isRead)
-    console.log(emails.length);
     return Promise.resolve(emails.length)
+}
+
+function sendEmail(sentEmail) {
+    let emails = _loadFromStorage()
+    const email = _createEmail(sentEmail.subject, sentEmail.body, sentEmail.to, 'sent', 'Me')
+    emails = [email, ...emails]
+    gEmails = emails
+    _saveToStorage()
+    return Promise.resolve()
 }
 
 // function toggleUnread(email) {
