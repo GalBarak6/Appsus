@@ -5,10 +5,12 @@ export const noteService = {
     query,
     saveNote,
     removeNote,
+    copyNote,
+    getPinnedNotes, 
+    pinNote
 }
 
 const KEY = 'noteDB'
-
 let gNotes
 
 function query(filterBy) {
@@ -19,19 +21,29 @@ function query(filterBy) {
     gNotes = notes
     _saveToStorage()
 
+    notes = notes.filter(note => note.isPinned ===false )
+
     if (filterBy) {
         let { search, type } = filterBy
         console.log(search);
         console.log(type);
         notes = notes.filter(note => {
             return ((note.info.title.toLowerCase().includes(search.toLowerCase()) ||
-            note.info.txt.toLowerCase().includes(search.toLowerCase()) 
-                )) && (note.type===type || type==='all')
+                note.info.txt.toLowerCase().includes(search.toLowerCase())
+            )) && (note.type === type || type === 'all')
         })
     }
+    var pinnedNotes = getPinnedNotes()
 
     console.log(notes)
-    return Promise.resolve(notes)
+    return Promise.resolve({notes, pinnedNotes})
+}
+
+function getPinnedNotes() {
+    var notes = gNotes.filter(note => note.isPinned)
+    console.log('getPinnedNotes', notes)
+    return notes
+    // return Promise.resolve(notes)
 }
 
 function saveNote(note) {
@@ -42,10 +54,8 @@ function saveNote(note) {
 
 function _addNote(note) {
     note.id = utilService.makeId()
-    console.log(gNotes)
     gNotes.push(note)
     _saveToStorage()
-    console.log(gNotes)
 }
 
 function removeNote(noteId) {
@@ -62,6 +72,20 @@ function _updateNote(noteToUpdate) {
 
 }
 
+function copyNote(note) {
+    console.log('copyNote')
+    const { type, info } = note
+    var copy = _createNote(type, info)
+    gNotes.push(copy)
+    _saveToStorage()
+}
+
+function pinNote(note, isPinned){
+    console.log('pinNote')
+    note.isPinned = isPinned
+    _updateNote(note)
+}
+
 
 function _createNotes() {
 
@@ -71,7 +95,7 @@ function _createNotes() {
             type: "note-txt",
             isPinned: true,
             info: {
-                title:'TEST',
+                title: 'TEST',
                 txt: "Fullstack Me Baby!"
             }
         },
@@ -79,12 +103,13 @@ function _createNotes() {
         {
             id: "n104",
             type: "note-txt",
-            isPinned: true,
+            isPinned: false,
             info: {
-                title:'TEXT',
+                title: 'TEXT',
                 txt: "Fullstack Me Baby!Fullstack Me Baby!Fullstack Me Baby!"
             }
         },
+
         {
             id: "n102",
             type: "note-img",
@@ -93,6 +118,7 @@ function _createNotes() {
                 title: " IMAGE Bobi and Me",
                 txt: "Image note"
             },
+            isPinned: true,
             style: {
                 backgroundColor: "#00d"
             }
@@ -101,27 +127,27 @@ function _createNotes() {
             id: "n103",
             type: "note-todos",
             info: {
-                title:'TODOS',
+                title: 'TODOS',
                 txt: "todos note",
                 label: "Get my stuff together",
                 todos: [
                     { txt: "Driving liscence", doneAt: null },
                     { txt: "Coding power", doneAt: 187111111 }
                 ]
-            }
+            },
+            isPinned: false,
         }
     ]
     return notes
 }
 
-function _createNote(type, info, style, isPinned = false) {
+function _createNote(type, info, isPinned = false) {
 
     return {
         id: utilService.makeId(),
         type,
         isPinned,
         info,
-        style
     }
 }
 

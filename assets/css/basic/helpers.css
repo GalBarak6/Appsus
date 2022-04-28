@@ -8,3 +8,13 @@
 .flex.space-between{
     justify-content: space-between;
 }
+
+.input-size{
+    width: 70%;
+}
+
+.textarea-size{
+    width: 70%;
+    height: 100px;
+
+}

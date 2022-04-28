@@ -1,15 +1,7 @@
+import {ColorInput} from './dynamic-inputs/color-input.jsx'
 
+export class NoteEditTxt extends React.Component {
 
-export class NoteAddTxt extends React.Component {
-
-    // state = {
-    //     note: {
-    //         type: 'note-txt',
-    //         title: '',
-    //         txt: '',
-    //         isPinned: false
-    //     }
-    // }
     state = {
         note: {
             type: 'note-txt',
@@ -21,6 +13,8 @@ export class NoteAddTxt extends React.Component {
             isPinned: false
         }
     }
+
+    isSetColorOn = false
 
     componentDidMount() {
         this.loadNote()
@@ -45,7 +39,6 @@ export class NoteAddTxt extends React.Component {
                 }
             }
         ))
-
     }
 
     onSave = (ev) => {
@@ -65,36 +58,41 @@ export class NoteAddTxt extends React.Component {
                     title: '',
                     txt: '',
                 },
-
                 isPinned: false
             }
         })
     }
 
-
-    render() {
-            const { title, txt } = this.state.note.info
-
-        return <section className="note-add-txt">
-            <form onSubmit={this.onSave}>
-                <div>
-                    <input type=" text" name="title" placeholder="Title"
-                        value={title} onChange={this.handleChange} />
-                    <button>Pin</button>
-                </div>
-                <div>
-                    <textarea name="txt" placeholder="Take a note..."
-                        value={txt} onChange={this.handleChange} />
-                </div>
-                <div>
-                    <button>background</button>
-                    <button>close</button>
-                </div>
-            </form>
-
-        </section>
-
+    onSetColor = () => {
+        console.log('onSetColor')
+        this.isSetColorOn = true
     }
 
 
+    render() {
+        const { title, txt } = this.state.note.info
+        var className
+        if (this.props.selectedNote) className = 'note-edit-modal'
+
+        return <section className="note-edit-container" >
+            <div className={"note-edit-txt " + className}>
+                <form onSubmit={this.onSave}>
+                    <div>
+                        <input type=" text" name="title" placeholder="Title"
+                            value={title} onChange={this.handleChange} />
+                        <button type="button">Pin</button>
+                    </div>
+                    <div>
+                        <textarea name="txt" placeholder="Take a note..."
+                            value={txt} onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        <button type="button"onClick={this.onSetColor}>background</button>
+                        <button>close</button>
+                    </div>
+                </form>
+            </div>
+            <ColorInput/>
+        </section>
+    }
 }
