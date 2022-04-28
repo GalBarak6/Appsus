@@ -24,7 +24,8 @@ export class NoteList extends React.Component {
 
         return <section className="note-list">
             {notes.map(note => <NotePreview key={note.id} note={note}
-                onRemoveNote={this.onRemoveNote} onUpdateNote={this.onUpdateNote} onCheck={this.props.onCheck}/>)}
+                onRemoveNote={this.onRemoveNote} onUpdateNote={this.onUpdateNote} 
+                onCheck={this.props.onCheck} onCopy={this.props.onCopy} onPin={this.props.onPin} onUnPin={this.props.onUnPin}/>)}
         </section>
 
 

@@ -4,36 +4,38 @@ import { NoteTodos } from "./note-todos.jsx"
 
 export class NotePreview extends React.Component {
 
-    state = {
-        note: this.props.note
-    }
-
     onRemoveNote = () => {
-        console.log('onRemoveNote', this.state.note)
+        console.log('onRemoveNote', this.props.note)
         this.props.onRemoveNote(this.props.note)
     }
 
     onUpdateNote = () => {
-        console.log('onUpdateNote', this.state.note)
-        this.props.onUpdateNote(this.state.note)
+        console.log('onUpdateNote', this.props.note)
+        this.props.onUpdateNote(this.props.note)
     }
 
-
     render() {
-        const { note } = this.state
+        const { note } = this.props
         const { type } = note
+        const { isPinned } = note
 
         return <section className="note-preview">
-            <div>
-                <button>Pin</button>
-            </div>
+            {isPinned && <div>
+                <button onClick={() => { this.props.onUnPin(note) }}>UnPin</button>
+            </div>}
+            {!isPinned &&
+                <div>
+                    <button onClick={() => { this.props.onPin(note) }}>Pin</button>
+                </div>
+            }
             <DynamicCmp type={type} note={note} />
 
             <div>
                 <button>background</button>
                 <button onClick={this.onUpdateNote}>update</button>
                 <button onClick={this.onRemoveNote}>delete</button>
-                <button onClick={()=>{this.props.onCheck(note)}}>check</button>
+                <button onClick={() => { this.props.onCheck(note) }}>check</button>
+                <button onClick={() => { this.props.onCopy(note) }}>copy</button>
             </div>
 
         </section>

@@ -36,3 +36,6 @@ button {
     color: rgb(95, 96, 96);
     cursor: pointer;
 }
+hr{
+    margin:20px;
+}

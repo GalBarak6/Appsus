@@ -1,0 +1,25 @@
+.note-edit-modal.note-edit-txt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* background-color:aqua */
+}
+
+/* .items-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: lightgoldenrodyellow;
+}
+
+.item {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+} */
