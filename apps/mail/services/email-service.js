@@ -4,7 +4,9 @@ import { utilService } from '../../../services/util.service.js'
 export const emailService = {
     query,
     getById,
-    deleteEmail
+    deleteEmail,
+    deletePreview,
+    countUnread
 }
 
 const KEY = 'emailDB'
@@ -26,7 +28,6 @@ function query(filterBy) {
 
     if (filterBy) {
         let { search, type } = filterBy
-        if (type === 'all') return Promise.resolve(emails)
         console.log(search);
         console.log(type);
         emails = emails.filter(email => {
@@ -35,8 +36,8 @@ function query(filterBy) {
                 email.body.toLowerCase().includes(search.toLowerCase()))) &&
                 (type === 'starred' && email.isStarred ||
                     type === 'read' && email.isread ||
-                    type === 'unread' && !email.read)
-
+                    type === 'unread' && !email.read ||
+                    type === 'all')
         })
     }
     console.log(emails);
@@ -52,6 +53,7 @@ function getById(emailId) {
 }
 
 function deleteEmail(emailId) {
+    console.log(emailId);
     let emails = _loadFromStorage()
     emails = emails.filter(email => email.id !== emailId)
     gEmails = emails
@@ -59,40 +61,64 @@ function deleteEmail(emailId) {
     return Promise.resolve()
 }
 
-function toggleUnread(email) {
-    email.isRead = !email.isRead
-    _saveToStorage
+function deletePreview(emailId) {
+    console.log(emailId);
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => email.id !== emailId)
+    gEmails = emails
+    _saveToStorage()
 }
+
+function countUnread() {
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => !email.isRead)
+    console.log(emails.length);
+    return Promise.resolve(emails.length)
+}
+
+// function toggleUnread(email) {
+//     email.isRead = !email.isRead
+//     _saveToStorage
+// }
+
+// function compose(email) {
+//     let cars = _loadFromStorage()
+//     const email = _createEmail(subject, body, to, status)
+//     cars = [car, ...cars]
+//     _saveToStorage(cars)
+//     return Promise.resolve()
+// }
+
 
 function _createEmails() {
     const emails = [
-        _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com', 'inbox'),
-        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'inbox'),
-        _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com', 'sent'),
-        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com', 'sent'),
-        _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com', 'inbox')
+        _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com', 'inbox', 'Gal'),
+        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'Orit'),
+        _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Chuck norris'),
+        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Harel Financials'),
+        _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'My annoying boss')
     ]
     gEmails = emails
     console.log(gEmails);
 }
 
-function _createEmail(subject, body, to, status) {
+function _createEmail(subject, body, to, mailStatus, from) {
     return {
         id: utilService.makeId(),
         subject,
         body,
         isRead: false,
-        sentAt: Date.now(),
+        sentAt: utilService.getMonthName(new Date()),
         to,
-        status,
-        from: 'Gal',
+        mailStatus,
+        from,
         isStarred: false
     }
 }
 
 
 const criteria = {
-    status: 'inbox/sent/trash/draft',
+    mailStatus: 'inbox/sent/trash/draft',
     txt: 'puki', // no need to support complex text search
     isRead: true, // (optional property, if missing: show all)
     isStared: true, // (optional property, if missing: show all)
