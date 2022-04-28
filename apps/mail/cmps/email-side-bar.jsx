@@ -17,7 +17,7 @@ export class EmailSideBar extends React.Component {
     render() {
         return <section className="email-side-bar">
             <div className="add" onClick={this.props.onOpenCompose}>
-                <img src="/assets/icons/plus.png" alt="" />
+                <img src="./assets/icons/plus.png" alt="" />
                 <h2>Compose</h2>
             </div>
             <img src="./assets/icons/inbox.png" alt="" name="inbox" onClick={this.onHandleChange} />
