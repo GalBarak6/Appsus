@@ -4,7 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 export const noteService = {
     query,
     saveNote,
-    removeNote
+    removeNote,
 }
 
 const KEY = 'noteDB'
@@ -16,32 +16,39 @@ function query() {
     if (!notes) {
         notes = _createNotes()
     }
-    
+
     gNotes = notes
     _saveToStorage()
     console.log(notes)
     return Promise.resolve(notes)
 }
 
-function saveNote(note){
-    if(note.id) return _updateNote(note)
-    else return _addNote(note)
+function saveNote(note) {
+    if (note.id) _updateNote(note)
+    else _addNote(note)
+    return Promise.resolve()
 }
 
-function _addNote(note){
-
+function _addNote(note) {
     note.id = utilService.makeId()
     console.log(gNotes)
     gNotes.push(note)
     _saveToStorage()
     console.log(gNotes)
-    return Promise.resolve(gNotes)
 }
 
-function removeNote(noteId){
+function removeNote(noteId) {
     const noteIdx = gNotes.findIndex(note => note.id === noteId)
-    gNotes.splice(noteIdx,1)
+    gNotes.splice(noteIdx, 1)
     _saveToStorage()
+}
+
+function _updateNote(noteToUpdate) {
+    console.log('updateNote')
+    gNotes = gNotes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
+    _saveToStorage()
+    // return Promise.resolve()
+
 }
 
 

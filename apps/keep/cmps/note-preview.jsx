@@ -8,10 +8,16 @@ export class NotePreview extends React.Component {
         note: this.props.note
     }
 
-    onRemoveNote = ()=>{
+    onRemoveNote = () => {
         console.log('onRemoveNote', this.state.note)
-        this.props.onRemoveNote(this.state.note)
+        this.props.onRemoveNote(this.props.note)
     }
+
+    onUpdateNote = () => {
+        console.log('onUpdateNote', this.state.note)
+        this.props.onUpdateNote(this.state.note)
+    }
+
 
     render() {
         const { note } = this.state
@@ -25,7 +31,9 @@ export class NotePreview extends React.Component {
 
             <div>
                 <button>background</button>
+                <button onClick={this.onUpdateNote}>update</button>
                 <button onClick={this.onRemoveNote}>delete</button>
+                <button onClick={()=>{this.props.onCheck(note)}}>check</button>
             </div>
 
         </section>

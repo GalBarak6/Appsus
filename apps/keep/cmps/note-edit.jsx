@@ -1,10 +1,10 @@
 import { noteService } from '../services/note.service.js'
 import {NoteAddTxt} from './note-add-txt.jsx'
 
-export class NoteAdd extends React.Component {
+export class NoteEdit extends React.Component {
     state = {
         type: null,
-        note: null
+        selectedNote: this.props.selectedNote
     }
 
     onAddNote = ({ target }) => {
@@ -23,10 +23,11 @@ export class NoteAdd extends React.Component {
     }
 
     render() {
+        console.log('selectedNode', this.state.selectedNote)
         const { type } = this.state
 
-        return <section className="note-add" >
-            {!type && <div className="note-add-container" >
+        return <section className="note-edit" >
+            {!type && <div className="note-edit-container" >
                 <div onClick={this.onAddDefaultNote}>
                     Take a note...
                 </div>
@@ -37,7 +38,7 @@ export class NoteAdd extends React.Component {
                 </div>
             </div>
             }
-            {type && <DynamicCmp type={type} onSaveNote={this.onSaveNote} />}
+            {type && <DynamicCmp type={type} onSaveNote={this.onSaveNote} selectedNote={this.state.selectedNote} />}
         </section>
     }
 }

@@ -1,5 +1,5 @@
 
-.note-add-container{
+.note-edit-container{
     padding: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
     border: 1px solid rgb(117, 116, 116);
@@ -10,10 +10,19 @@
     width: 70%;
 }
 
-.note-add button {
+.note-edit button {
     border: black;
     padding: 10px;
     color: rgb(95, 96, 96);
     cursor: pointer;
     gap: 10px;
+}
+
+
+.note-edit-modal .note-edit-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color:aqua
 }

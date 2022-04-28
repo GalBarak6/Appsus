@@ -22,6 +22,17 @@ export class NoteAddTxt extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.loadNote()
+    }
+
+    loadNote = () => {
+        console.log('loadNote')
+        const note = this.props.selectedNote
+        if (!note) return
+        this.setState({ note })
+    }
+
     handleChange = ({ target }) => {
         const field = target.name
         console.log(field)
@@ -41,10 +52,10 @@ export class NoteAddTxt extends React.Component {
         ev.preventDefault()
         console.log('onSave', ev.target)
         this.props.onSaveNote(this.state.note)
-        this.clearNote()
+        // this.clearNote()
     }
 
-    clearNote = ()=>{
+    clearNote = () => {
         console.log('clearNote')
         this.setState({
 
@@ -54,7 +65,7 @@ export class NoteAddTxt extends React.Component {
                     title: '',
                     txt: '',
                 },
-    
+
                 isPinned: false
             }
         })
@@ -62,7 +73,7 @@ export class NoteAddTxt extends React.Component {
 
 
     render() {
-        const { title, txt } = this.state.note.info
+            const { title, txt } = this.state.note.info
 
         return <section className="note-add-txt">
             <form onSubmit={this.onSave}>

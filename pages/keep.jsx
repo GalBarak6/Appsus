@@ -1,13 +1,15 @@
 import { noteService } from "../apps/keep/services/note.service.js"
 import { NoteList } from "../apps/keep/cmps/note-list.jsx"
 import { NoteFilter } from "../apps/keep/cmps/note-filter.jsx"
-import { NoteAdd } from "../apps/keep/cmps/note-add.jsx"
+import { NoteEdit } from "../apps/keep/cmps/note-edit.jsx"
 
 
 export class Keep extends React.Component {
     state = {
         notes: [],
-        filterBy:null
+        filterBy: null,
+        isModalOpen: false,
+        selectedNote: null
     }
 
     componentDidMount() {
@@ -17,30 +19,57 @@ export class Keep extends React.Component {
     loadNotes = () => {
         noteService.query()
             .then(notes => {
-                console.log(notes)
+                console.log('loadNotes', notes)
                 this.setState({ notes })
             })
     }
 
-    onSaveNote = (note) =>{
+    onSaveNote = (note) => {
         console.log('onSaveNote', note)
         noteService.saveNote(note)
-        this.loadNotes()
+            .then(() => {
+                if (this.state.isModalOpen){
+                    this.setState({ isModalOpen: false, selectedNote: null })
+                    this.loadNotes()
+                }else{
+                    this.setState({ isModalOpen: true, selectedNote: note })
+                    this.loadNotes()
+                }
+            })
     }
 
-    onRemoveNote = (note) =>{
+    onRemoveNote = (note) => {
         console.log('onRemoveNote', note)
         noteService.removeNote(note.id)
         this.loadNotes()
     }
 
+    // onUpdateNote = (note) => {
+    //     console.log('onUpdateNote', note)
+    //     this.setState({ isModalOpen: true, selectedNote: note })
+    // }
+
+    onCheck = (note) => {
+        console.log('check from keep', note)
+    }
+
+
+
     render() {
-        const { notes } = this.state
+        const { notes, isModalOpen } = this.state
+
+        var className
 
         return <section className="note-app">
-            <NoteFilter/>
-            <NoteAdd onSaveNote={this.onSaveNote}/>
-            <NoteList notes={notes} onRemoveNote={this.onRemoveNote} />
+            <NoteFilter />
+            <NoteEdit onSaveNote={this.onSaveNote} />
+            <NoteList notes={notes} onRemoveNote={this.onRemoveNote}
+                onSaveNote={this.onSaveNote} onCheck={this.onCheck} />
+            {isModalOpen && <div className="note-edit-modal ">
+                <NoteEdit onSaveNote={this.onSaveNote} selectedNote={this.state.selectedNote} />
+            </div>
+
+            }
         </section>
     }
 }
