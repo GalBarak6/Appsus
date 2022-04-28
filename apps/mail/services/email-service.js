@@ -29,7 +29,8 @@ function query(filterBy, mailStatus) {
 
     emails = emails.filter(email => {
         return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-            mailStatus === 'sent' && email.mailStatus === 'sent')
+            mailStatus === 'sent' && email.mailStatus === 'sent' ||
+            mailStatus === 'star' && email.mailStatus === 'star')
     })
 
     if (filterBy) {
@@ -100,7 +101,7 @@ function countUnread() {
 function _createEmails() {
     const emails = [
         _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com', 'inbox', 'Gal'),
-        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'Orit'),
+        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'star', 'Orit'),
         _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Chuck norris'),
         _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Harel Financials'),
         _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'My annoying boss')
