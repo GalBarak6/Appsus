@@ -2,6 +2,7 @@ import { emailService } from "../apps/mail/services/email-service.js"
 import { EmailList } from "../apps/mail/cmps/email-list.jsx"
 import { EmailSideBar } from "../apps/mail/cmps/email-side-bar.jsx"
 import { EmailFilter } from "../apps/mail/cmps/email-filter.jsx"
+import { EmailCompose } from "../apps/mail/cmps/email-compose.jsx"
 
 // const { NavLink, Route, Switch } = ReactRouterDOM
 
@@ -11,7 +12,8 @@ export class Email extends React.Component {
         emails: [],
         filterBy: null,
         mailStatus: 'inbox',
-        unread: ''
+        unread: '',
+        isOpenCompose: false
     }
 
     componentDidMount() {
@@ -28,10 +30,18 @@ export class Email extends React.Component {
     onSetFilter = (filterBy, mailStatus) => {
         console.log(filterBy);
         console.log(mailStatus);
-        this.setState({ filterBy , mailStatus}, () => {
-            console.log(this.state.filterBy,this.state.mailStatus);
+        this.setState({ filterBy, mailStatus }, () => {
+            console.log(this.state.filterBy, this.state.mailStatus);
             this.loadEmails()
         })
+    }
+
+    onOpenCompose = () => {
+        this.setState({ isOpenCompose: true })
+    }
+
+    onCloseCompose = () => {
+        this.setState({ isOpenCompose: false })
     }
 
     render() {
@@ -39,7 +49,8 @@ export class Email extends React.Component {
         return <section className="email">
             <EmailFilter onSetFilter={this.onSetFilter} />
             <EmailList emails={emails} loadEmails={this.loadEmails} />
-            <EmailSideBar onSetFilter={this.onSetFilter}/>
+            <EmailSideBar onSetFilter={this.onSetFilter} onOpenCompose={this.onOpenCompose} />
+            {this.state.isOpenCompose && <EmailCompose onCloseCompose={this.onCloseCompose} loadEmails={this.loadEmails}/>}
         </section>
     }
 }

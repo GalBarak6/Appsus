@@ -3,8 +3,9 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
-    min-width: 200px;
-    border: 1px solid black;
+    width: 100%;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .email-preview:hover {

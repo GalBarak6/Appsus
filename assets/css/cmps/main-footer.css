@@ -3,7 +3,8 @@
     /* bottom: 0; */
     padding: 20px 20px;
     width: 100%;
-    background: lightgreen;
+    /* background: lightgreen; */
+    background-color: #adb5bd;
     font-size: 20px;
     display: flex;
     align-items: center;

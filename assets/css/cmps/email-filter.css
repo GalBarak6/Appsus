@@ -1,21 +1,23 @@
 .email-filter {
     display: flex;
-    padding-top: 10px;
-    padding-left: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
 }
 
 .email-filter select {
     border: none;
-    background-color: rgb(154, 203, 187);
-    height: 25px;
+    background-color: rgba(154, 203, 187, 0.2);
+    height: 35px;
     text-align: center;
 }
 
 .email-filter input[type="text"] {
     border: none;
-    background-color: rgb(154, 203, 187);
+    background-color: rgba(154, 203, 187, 0.2);
     color: lightslategrey;
-    height: 25px;
+    height: 35px;
+    width: 300px;
     border-inline-end: 1px solid black;
 }
 

@@ -1,0 +1,24 @@
+.email-compose {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    display: none;
+    position: fixed;
+    bottom: -100px;
+    right: 0;
+    /* transform: translate(-50%, -50%); */
+}
+
+#msg-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#msg-form textarea {
+    height: 200px;
+}
+
+.open {
+    display:block;
+}
