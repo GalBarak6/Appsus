@@ -5,12 +5,14 @@ export class EmailSideBar extends React.Component {
 
 
     state = {
-        mailStatus: ''
+        mailStatus: 'inbox'
     }
 
     onHandleChange = ({ target }) => {
         const value = target.name
-        this.setState({ mailStatus: value })
+        this.setState({ mailStatus: value }, () => {
+            this.props.onSetFilter(null, this.state.mailStatus)
+        })
     }
 
     render() {

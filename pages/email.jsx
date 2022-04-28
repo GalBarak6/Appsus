@@ -10,6 +10,7 @@ export class Email extends React.Component {
     state = {
         emails: [],
         filterBy: null,
+        mailStatus: 'inbox',
         unread: ''
     }
 
@@ -18,16 +19,17 @@ export class Email extends React.Component {
     }
 
     loadEmails = () => {
-        emailService.query(this.state.filterBy)
+        emailService.query(this.state.filterBy, this.state.mailStatus)
             .then(emails => this.setState({ emails }))
         emailService.countUnread()
             .then(count => this.setState({ unread: count }))
     }
 
-    onSetFilter = (filterBy) => {
+    onSetFilter = (filterBy, mailStatus) => {
         console.log(filterBy);
-        this.setState({ filterBy }, () => {
-            console.log(this.state.filterBy);
+        console.log(mailStatus);
+        this.setState({ filterBy , mailStatus}, () => {
+            console.log(this.state.filterBy,this.state.mailStatus);
             this.loadEmails()
         })
     }
@@ -37,7 +39,7 @@ export class Email extends React.Component {
         return <section className="email">
             <EmailFilter onSetFilter={this.onSetFilter} />
             <EmailList emails={emails} loadEmails={this.loadEmails} />
-            <EmailSideBar />
+            <EmailSideBar onSetFilter={this.onSetFilter}/>
         </section>
     }
 }

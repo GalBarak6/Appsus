@@ -18,19 +18,26 @@ const loggedinUser = {
     fullname: 'Mahatma Appsus'
 }
 
-function query(filterBy) {
+function query(filterBy, mailStatus) {
     console.log('query');
+    console.log(mailStatus);
     let emails = _loadFromStorage()
     if (!emails) {
         _createEmails()
         _saveToStorage()
     }
 
+    emails = emails.filter(email => {
+        return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+            mailStatus === 'sent' && email.mailStatus === 'sent')
+    })
+
     if (filterBy) {
         let { search, type } = filterBy
         console.log(search);
         console.log(type);
         emails = emails.filter(email => {
+            console.log(email.mailStatus);
             return ((email.from.toLowerCase().includes(search.toLowerCase()) ||
                 email.subject.toLowerCase().includes(search.toLowerCase()) ||
                 email.body.toLowerCase().includes(search.toLowerCase()))) &&
