@@ -1,0 +1,24 @@
+.user-msg {
+    position: fixed;
+    top: 70px;
+    right: -100px;
+    padding: 10px 5px;
+    border: 2px solid black;
+    background-color: whitesmoke;
+    text-align: center;
+    color: rgba(245, 245, 245, 0.88);
+}
+
+.user-msg button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.user-msg.success {
+    background-color: rgb(67, 145, 67);
+}
+
+.user-msg.danger {
+    background-color: rgb(175, 72, 72);
+}

@@ -5,7 +5,8 @@ import { Email } from './pages/email.jsx'
 import { EmailDetails } from './apps/mail/pages/email-details.jsx'
 import { Keep } from './pages/keep.jsx'
 import { MainFooter } from './cmps/main-footer.jsx'
-
+// import { EmailCompose } from './apps/mail/cmps/email-compose.jsx'
+import { UserMsg } from './cmps/user-msg.jsx'
 
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
@@ -22,6 +23,7 @@ export function Main() {
                 <Route path="/" component={Home}></Route>
             </Switch>
         </section>
+        <UserMsg />
         <MainFooter />
     </Router>
 }

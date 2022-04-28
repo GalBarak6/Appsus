@@ -3,11 +3,14 @@ import { EmailList } from "../apps/mail/cmps/email-list.jsx"
 import { EmailSideBar } from "../apps/mail/cmps/email-side-bar.jsx"
 import { EmailFilter } from "../apps/mail/cmps/email-filter.jsx"
 
+// const { NavLink, Route, Switch } = ReactRouterDOM
+
 export class Email extends React.Component {
 
     state = {
         emails: [],
-        filterBy: null
+        filterBy: null,
+        unread: ''
     }
 
     componentDidMount() {
@@ -17,6 +20,8 @@ export class Email extends React.Component {
     loadEmails = () => {
         emailService.query(this.state.filterBy)
             .then(emails => this.setState({ emails }))
+        emailService.countUnread()
+            .then(count => this.setState({ unread: count }))
     }
 
     onSetFilter = (filterBy) => {
@@ -31,8 +36,9 @@ export class Email extends React.Component {
         const { emails } = this.state
         return <section className="email">
             <EmailFilter onSetFilter={this.onSetFilter} />
-            <EmailList emails={emails} />
+            <EmailList emails={emails} loadEmails={this.loadEmails} />
             <EmailSideBar />
         </section>
     }
 }
+

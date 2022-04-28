@@ -1,9 +1,18 @@
 .email-details {
+    display: flex;
+    flex-direction: column;
     padding: 20px 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
 
 .email-details img {
     height: 35px;
     width: 35px;
     cursor: pointer;
+}
+
+.email-details h2,h3 {
+    font-weight: normal;
 }

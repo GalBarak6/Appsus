@@ -3,7 +3,7 @@ export class EmailFilter extends React.Component {
     state = {
         filterBy: {
             search: '',
-            type: ''
+            type: 'all'
         }
     }
 
