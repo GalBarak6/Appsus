@@ -18,9 +18,9 @@ export class EmailPreview extends React.Component {
     render() {
         const { email } = this.props
         const subjClass = (email.isRead) ? '' : 'unread'
-        return <section>
+        return <section className="email-preview">
             <Link to={`/email/${email.id}`}>
-                <article className="email-preview">
+                <article className="email-container">
                     <h3 className={subjClass}>{email.from}</h3>
                     <h3 className={subjClass}>{email.subject.substring(0, 50)}</h3>
                     <p className={subjClass}>{`${email.body.substring(0, 35)}...`}</p>

@@ -5,6 +5,7 @@
     justify-content: center;
     gap: 10px;
     margin: 0 auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    /* padding-left: 2rem;
+    padding-right: 2rem; */
+    width: 70%;
 }

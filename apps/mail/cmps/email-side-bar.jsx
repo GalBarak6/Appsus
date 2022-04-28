@@ -20,10 +20,10 @@ export class EmailSideBar extends React.Component {
                 <img src="/assets/icons/plus.png" alt="" />
                 <h2>Compose</h2>
             </div>
-            <img src="/assets/icons/inbox.png" alt="" name="inbox" onClick={this.onHandleChange} />
-            <img src="/assets/icons/star.png" alt="" name="star" onClick={this.onHandleChange} />
-            <img src="/assets/icons/sent.png" alt="" name="sent" onClick={this.onHandleChange} />
-            <img src="/assets/icons/delete.png" alt="" name="delete" onClick={this.onHandleChange} />
+            <img src="./assets/icons/inbox.png" alt="" name="inbox" onClick={this.onHandleChange} />
+            <img src="./assets/icons/star.png" alt="" name="star" onClick={this.onHandleChange} />
+            <img src="./assets/icons/sent.png" alt="" name="sent" onClick={this.onHandleChange} />
+            <img src="./assets/icons/delete.png" alt="" name="delete" onClick={this.onHandleChange} />
         </section>
     }
 }
