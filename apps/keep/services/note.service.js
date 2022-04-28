@@ -11,14 +11,25 @@ const KEY = 'noteDB'
 
 let gNotes
 
-function query() {
+function query(filterBy) {
     var notes = _loadFromStorage()
     if (!notes) {
         notes = _createNotes()
     }
-
     gNotes = notes
     _saveToStorage()
+
+    if (filterBy) {
+        let { search, type } = filterBy
+        console.log(search);
+        console.log(type);
+        notes = notes.filter(note => {
+            return ((note.info.title.toLowerCase().includes(search.toLowerCase()) ||
+            note.info.txt.toLowerCase().includes(search.toLowerCase()) 
+                )) && (note.type===type || type==='all')
+        })
+    }
+
     console.log(notes)
     return Promise.resolve(notes)
 }
@@ -60,6 +71,7 @@ function _createNotes() {
             type: "note-txt",
             isPinned: true,
             info: {
+                title:'TEST',
                 txt: "Fullstack Me Baby!"
             }
         },
@@ -69,6 +81,7 @@ function _createNotes() {
             type: "note-txt",
             isPinned: true,
             info: {
+                title:'TEXT',
                 txt: "Fullstack Me Baby!Fullstack Me Baby!Fullstack Me Baby!"
             }
         },
@@ -77,7 +90,8 @@ function _createNotes() {
             type: "note-img",
             info: {
                 url: "http://some-img/me",
-                title: "Bobi and Me"
+                title: " IMAGE Bobi and Me",
+                txt: "Image note"
             },
             style: {
                 backgroundColor: "#00d"
@@ -87,6 +101,8 @@ function _createNotes() {
             id: "n103",
             type: "note-todos",
             info: {
+                title:'TODOS',
+                txt: "todos note",
                 label: "Get my stuff together",
                 todos: [
                     { txt: "Driving liscence", doneAt: null },
