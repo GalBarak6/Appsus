@@ -17,7 +17,7 @@ export class Keep extends React.Component {
     }
 
     loadNotes = () => {
-        noteService.query()
+        noteService.query(this.state.filterBy)
             .then(notes => {
                 console.log('loadNotes', notes)
                 this.setState({ notes })
@@ -53,7 +53,13 @@ export class Keep extends React.Component {
         console.log('check from keep', note)
     }
 
-
+    onSetFilter = (filterBy) => {
+        console.log(filterBy);
+        this.setState({ filterBy }, () => {
+            console.log(this.state.filterBy);
+            this.loadNotes()
+        })
+    }
 
     render() {
         const { notes, isModalOpen } = this.state
@@ -61,7 +67,7 @@ export class Keep extends React.Component {
         var className
 
         return <section className="note-app">
-            <NoteFilter />
+            <NoteFilter onSetFilter={this.onSetFilter} />
             <NoteEdit onSaveNote={this.onSaveNote} />
             <NoteList notes={notes} onRemoveNote={this.onRemoveNote}
                 onSaveNote={this.onSaveNote} onCheck={this.onCheck} />
