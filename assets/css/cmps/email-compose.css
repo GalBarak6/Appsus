@@ -1,13 +1,9 @@
 .email-compose {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
     display: none;
     position: fixed;
     bottom: -100px;
     right: 0;
-    /* transform: translate(-50%, -50%); */
+    width: 30em;
 }
 
 #msg-form {
@@ -21,4 +17,11 @@
 
 .open {
     display: block;
+}
+
+.email-compose .close-compose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1rem;
 }

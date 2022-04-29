@@ -1,9 +1,9 @@
-const { NavLink } = ReactRouterDOM
+const { Link, NavLink } = ReactRouterDOM
 
 export function MainHeader() {
     return <section className="main-header">
 
-        <h1>Appsus</h1>
+        <Link to="/"><h1>Appsus</h1></Link>
         <nav>
             <NavLink to="/" exact>Home</NavLink>
             <NavLink to="/about">About</NavLink>

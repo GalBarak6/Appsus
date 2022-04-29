@@ -4,16 +4,19 @@ import { utilService } from '../../../services/util.service.js'
 export const emailService = {
     query,
     getById,
-    deleteEmail,
-    deletePreview,
+    moveMailToTrash,
     countUnread,
-    sendEmail
+    sendEmail,
+    readMail,
+    toggleStatus,
+    backToInbox
 }
 
 const KEY = 'emailDB'
 
 let gEmails
 let gPrevFolder = 'inbox'
+let gDeletedMails = []
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -33,7 +36,8 @@ function query(filterBy, mailStatus) {
     emails = emails.filter(email => {
         return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
             mailStatus === 'sent' && email.mailStatus === 'sent' ||
-            mailStatus === 'star' && email.mailStatus === 'star')
+            mailStatus === 'star' && email.mailStatus === 'star' ||
+            mailStatus === 'trash' && email.mailStatus === 'trash')
     })
 
     if (filterBy) {
@@ -69,19 +73,30 @@ function getById(emailId) {
     return Promise.resolve(email)
 }
 
-function deleteEmail(emailId) {
+// function deleteEmail(emailId) {
+//     _saveDeleted(emailId)
+//     let emails = _loadFromStorage()
+//     emails = emails.filter(email => email.id !== emailId)
+//     gEmails = emails
+//     _saveToStorage()
+//     return Promise.resolve()
+// }
+
+// function deletePreview(emailId) {
+//     _saveDeleted(emailId)
+//     let emails = _loadFromStorage()
+//     emails = emails.filter(email => email.id !== emailId)
+//     gEmails = emails
+//     _saveToStorage()
+// }
+
+function moveMailToTrash(emailId) {
     let emails = _loadFromStorage()
-    emails = emails.filter(email => email.id !== emailId)
+    let emailIdx = emails.findIndex(email => email.id === emailId)
+    emails[emailIdx].mailStatus = 'trash'
     gEmails = emails
     _saveToStorage()
     return Promise.resolve()
-}
-
-function deletePreview(emailId) {
-    let emails = _loadFromStorage()
-    emails = emails.filter(email => email.id !== emailId)
-    gEmails = emails
-    _saveToStorage()
 }
 
 function countUnread() {
@@ -91,18 +106,41 @@ function countUnread() {
 }
 
 function sendEmail(sentEmail) {
+    if (sentEmail.to && sentEmail.body) {
+        let emails = _loadFromStorage()
+        const email = _createEmail(sentEmail.subject, sentEmail.body, sentEmail.to, 'sent', 'Me')
+        emails = [email, ...emails]
+        gEmails = emails
+        _saveToStorage()
+    }
+    return Promise.resolve()
+}
+
+function readMail(emailId) {
     let emails = _loadFromStorage()
-    const email = _createEmail(sentEmail.subject, sentEmail.body, sentEmail.to, 'sent', 'Me')
-    emails = [email, ...emails]
+    let emailIdx = emails.findIndex(email => email.id === emailId)
+    emails[emailIdx].isRead = true
+    gEmails = emails
+    _saveToStorage()
+}
+
+function toggleStatus(emailId) {
+    let emails = _loadFromStorage()
+    let emailIdx = emails.findIndex(email => email.id === emailId)
+    emails[emailIdx].isRead = !emails[emailIdx].isRead
     gEmails = emails
     _saveToStorage()
     return Promise.resolve()
 }
 
-// function toggleUnread(email) {
-//     email.isRead = !email.isRead
-//     _saveToStorage
-// }
+function backToInbox(emailId) {
+    let emails = _loadFromStorage()
+    let emailIdx = emails.findIndex(email => email.id === emailId)
+    emails[emailIdx].mailStatus = 'inbox'
+    gEmails = emails
+    _saveToStorage()
+    return Promise.resolve()
+}
 
 function _createEmails() {
     const emails = [
@@ -135,32 +173,10 @@ function _createEmail(subject, body, to, mailStatus, from) {
     }
 }
 
-
-const criteria = {
-    mailStatus: 'inbox/sent/trash/draft',
-    txt: 'puki', // no need to support complex text search
-    isRead: true, // (optional property, if missing: show all)
-    isStared: true, // (optional property, if missing: show all)
-    lables: ['important', 'romantic'] // has any of the labels
-}
-
-
-
-
 function _saveToStorage() {
     storageService.saveToStorage(KEY, gEmails)
 }
 
 function _loadFromStorage() {
     return storageService.loadFromStorage(KEY)
-
-
-    // const email = {
-    //     id: 'e101',
-    //     subject: 'Miss you!',
-    //     body: 'Would love to catch up sometimes',
-    //     isRead: false,
-    //     sentAt: 1551133930594,
-    //     to: 'momo@momo.com'
-    // }
 }

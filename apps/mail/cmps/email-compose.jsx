@@ -1,4 +1,5 @@
 import { emailService } from "../services/email-service.js";
+import { eventBusService } from "../../../services/event-bus-service.js"
 
 export class EmailCompose extends React.Component {
 
@@ -26,6 +27,12 @@ export class EmailCompose extends React.Component {
             .then(() => {
                 this.props.onCloseCompose()
                 this.props.loadEmails()
+                eventBusService.emit('user-msg', { type: 'success', title: 'Success!', txt: 'This mail has been sent' })
+            })
+            .catch(() => {
+                eventBusService.emit('user-msg', {
+                    type: 'danger', title: 'Something is wrong', txt: 'Could not send email'
+                })
             })
     }
 
@@ -37,8 +44,8 @@ export class EmailCompose extends React.Component {
                 <input type="text" placeholder="Subject:" name="subject" onChange={this.onHandleChange} />
                 <textarea name="body" id="msg" form="msg-form" placeholder="Type here.."
                     onChange={this.onHandleChange}></textarea>
-                <button onClick={this.props.onCloseCompose}>Close</button>
                 <button type="submit">Send</button>
+                <button onClick={this.props.onCloseCompose} className="close-compose">X</button>
             </form>
         </section>
     }

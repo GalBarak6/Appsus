@@ -8,7 +8,6 @@ export class EmailDetails extends React.Component {
         email: null
     }
 
-    removeEvent
 
     componentDidMount() {
         this.loadEmail()
@@ -24,14 +23,14 @@ export class EmailDetails extends React.Component {
     }
 
     onDeleteEmail = () => {
-        emailService.deleteEmail(this.state.email.id)
+        emailService.moveMailToTrash(this.state.email.id)
             .then(() => {
                 this.onGoBack()
-                eventBusService.emit('user-msg', { type: 'success', txt: 'Deleted email successfully' })
+                eventBusService.emit('user-msg', { type: 'success', title: 'Success!', txt: 'This mail has been moved to trash' })
             })
             .catch(() => {
                 eventBusService.emit('user-msg', {
-                    type: 'danger', txt: 'Could not delete car :('
+                    type: 'danger', title: 'Something is wrong', txt: 'Could not delete email :('
                 })
             })
     }
@@ -40,14 +39,19 @@ export class EmailDetails extends React.Component {
         this.props.history.push('/email')
     }
 
+    onReadMail = (emailId) => {
+        emailService.readMail(emailId)
+    }
+
     render() {
         const { email } = this.state
         if (!email) return <React.Fragment></React.Fragment>
+        this.onReadMail(email.id)
         return <section className="email-details">
             <h4>{email.from}</h4>
             <h2>{email.subject}</h2>
             <h3>{email.body}</h3>
-            <button onClick={this.onDeleteEmail}>DELETE</button>
+            <button onClick={this.onDeleteEmail}><img src="./assets/icons/delete.png" alt="" /></button>
             <img src="/assets/icons/back.png" alt="" onClick={this.onGoBack} />
         </section>
     }
