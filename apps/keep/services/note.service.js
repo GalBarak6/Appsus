@@ -47,6 +47,7 @@ function getPinnedNotes() {
 }
 
 function saveNote(note) {
+    console.log('saveNote from service')
     if (note.id) _updateNote(note)
     else _addNote(note)
     return Promise.resolve()
@@ -55,6 +56,8 @@ function saveNote(note) {
 function _addNote(note) {
     note.id = utilService.makeId()
     gNotes.push(note)
+    console.log('_addNote', note)
+    console.log('_addNote', gNotes)
     _saveToStorage()
 }
 
@@ -79,12 +82,14 @@ function copyNote(note) {
     var copy = _createNote(type, info)
     gNotes.push(copy)
     _saveToStorage()
+    return Promise.resolve()
 }
 
 function pinNote(note, isPinned){
     console.log('pinNote')
     note.isPinned = isPinned
     _updateNote(note)
+    
 }
 
 

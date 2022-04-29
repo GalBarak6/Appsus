@@ -1,6 +1,7 @@
 import { noteService } from '../services/note.service.js'
 import {NoteEditTxt} from './note-edit-txt.jsx'
 import {NoteEditImg} from './note-edit-img.jsx'
+import {NoteEditTodos} from './note-edit-todos.jsx'
 
 export class NoteEdit extends React.Component {
     state = {
@@ -50,9 +51,9 @@ function DynamicCmp(props) {
             return <NoteEditTxt {...props} />
         case 'note-img':
             return <NoteEditImg {...props} />
-        // case 'note-todos':
-        //     return <NoteAddTodos {...props} />
+        case 'note-todos':
+            return <NoteEditTodos {...props} />
         // case 'note-video':
-        //     return <NoteAddVideo {...props} />
+        //     return <NoteEditVideo {...props} />
     }
 }

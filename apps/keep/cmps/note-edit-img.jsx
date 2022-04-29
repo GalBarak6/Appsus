@@ -46,7 +46,7 @@ export class NoteEditImg extends React.Component {
                 <div className="img-container">
                     <button>Upload</button>
                 </div>
-                <div className={"note-edit-txt " + className}>
+                <div className={"note-edit-img "}>
                     <form onSubmit={this.onSave}>
                         <div>
                             <input className="input-size" type=" text" name="title" placeholder="Title"

@@ -72,11 +72,11 @@ export class NoteEditTxt extends React.Component {
     render() {
         const { title, txt } = this.state.note.info
         var className
-        if (this.props.selectedNote) className = 'note-edit-modal'
+        if (this.props.selectedNote) className = 'modal-container'
 
         return <section className="note-edit-container" >
-            <section className="note-edit-txt">
-                <div className={"note-edit-txt " + className}>
+            <section className={"note-edit-txt "+ className}>
+                {/* <div className={"note-edit-txt " }> */}
                     <form onSubmit={this.onSave}>
                         <div>
                             <input className="input-size" type=" text" name="title" placeholder="Title"
@@ -92,7 +92,7 @@ export class NoteEditTxt extends React.Component {
                             <button>Close</button>
                         </div>
                     </form>
-                </div>
+                {/* </div> */}
             </section>
             <ColorInput />
         </section>

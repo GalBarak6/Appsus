@@ -1,10 +1,11 @@
 
 
 export function NoteTodosPreview({ todo }) {
-    const { txt } = todo
-
-    return <section className="note-todos-preview">
-        {txt}
-
-    </section>
+  
+        console.log('TodoPreview', todo)
+        return <section className="note-todos-preview">
+            <input type="checkbox" id="checkbox" />
+            <label htmlFor="checkbox" >{todo.txt}</label>
+        </section>
+    
 }
