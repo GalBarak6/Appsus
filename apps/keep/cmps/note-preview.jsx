@@ -9,11 +9,6 @@ export class NotePreview extends React.Component {
         this.props.onRemoveNote(this.props.note)
     }
 
-    onUpdateNote = () => {
-        console.log('onUpdateNote', this.props.note)
-        this.props.onUpdateNote(this.props.note)
-    }
-
     render() {
         const { note } = this.props
         const { type } = note
@@ -32,14 +27,12 @@ export class NotePreview extends React.Component {
 
             <div>
                 <button>background</button>
-                <button onClick={this.onUpdateNote}>update</button>
-                <button onClick={this.onRemoveNote}>delete</button>
-                <button onClick={() => { this.props.onCheck(note) }}>check</button>
-                <button onClick={() => { this.props.onCopy(note) }}>copy</button>
+                <button onClick={this.onRemoveNote}>Delete</button>
+                {/* <button onClick={() => { this.props.onCheck(note) }}>Check</button> */}
+                <button onClick={() => { this.props.onCopy(note) }}>Copy</button>
+                <button onClick={() => { this.props.onEdit(note) }}>Edit</button>
             </div>
-
         </section>
-
     }
 }
 

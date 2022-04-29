@@ -1,13 +1,21 @@
+.note-edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 10px 0; */
+}
+
 
 .note-edit-container{
     padding: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
     /* border: 1px solid rgb(117, 116, 116); */
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 20px;
-    width: 70%;
+    width: 50%;
 }
 
 .note-edit button {
