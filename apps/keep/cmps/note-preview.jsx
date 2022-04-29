@@ -16,21 +16,21 @@ export class NotePreview extends React.Component {
 
         return <section className="note-preview">
             {isPinned && <div>
-                <button onClick={() => { this.props.onUnPin(note) }}>UnPin</button>
+                <img src="./assets/icons/unpin.png" onClick={() => { this.props.onUnPin(note) }} />
             </div>}
             {!isPinned &&
                 <div>
-                    <button onClick={() => { this.props.onPin(note) }}>Pin</button>
+                    <img src="./assets/icons/pin.png" onClick={() => { this.props.onPin(note) }} />
                 </div>
             }
             <DynamicCmp type={type} note={note} />
 
             <div>
-                <button>background</button>
-                <button onClick={this.onRemoveNote}>Delete</button>
+                <img src="./assets/icons/colors.png" />
+                <img src="./assets/icons/delete.png" onClick={this.onRemoveNote} />
                 {/* <button onClick={() => { this.props.onCheck(note) }}>Check</button> */}
-                <button onClick={() => { this.props.onCopy(note) }}>Copy</button>
-                <button onClick={() => { this.props.onEdit(note) }}>Edit</button>
+                <img src="./assets/icons/copy.png" onClick={() => { this.props.onCopy(note) }} />
+                <img src="./assets/icons/edit.png" onClick={() => { this.props.onEdit(note) }} />
             </div>
         </section>
     }

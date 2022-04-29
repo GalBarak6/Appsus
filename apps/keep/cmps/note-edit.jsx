@@ -1,7 +1,7 @@
 import { noteService } from '../services/note.service.js'
-import {NoteEditTxt} from './note-edit-txt.jsx'
-import {NoteEditImg} from './note-edit-img.jsx'
-import {NoteEditTodos} from './note-edit-todos.jsx'
+import { NoteEditTxt } from './note-edit-txt.jsx'
+import { NoteEditImg } from './note-edit-img.jsx'
+import { NoteEditTodos } from './note-edit-todos.jsx'
 
 export class NoteEdit extends React.Component {
     state = {
@@ -13,15 +13,15 @@ export class NoteEdit extends React.Component {
         var type = target.name
         this.setState({ type })
     }
-    onAddDefaultNote = ()=>{
+    onAddDefaultNote = () => {
         var type = 'note-txt'
         this.setState({ type })
     }
 
-    onSaveNote = (note) =>{
+    onSaveNote = (note) => {
         console.log('onSaveNote', note)
         this.props.onSaveNote(note)
-        this.setState({type:null})
+        this.setState({ type: null })
     }
 
     render() {
@@ -34,9 +34,9 @@ export class NoteEdit extends React.Component {
                     Take a note...
                 </div>
                 <div>
-                    <button onClick={this.onAddNote} name="note-txt">txt</button>
-                    <button onClick={this.onAddNote} name="note-img">Img</button>
-                    <button onClick={this.onAddNote} name="note-todos">todos</button>
+                    <img src="./assets/icons/plus.png" onClick={this.onAddNote} name="note-txt" />
+                    <img src="./assets/icons/img.png" onClick={this.onAddNote} name="note-img" />
+                    <img src="./assets/icons/todo.png" onClick={this.onAddNote} name="note-todos" />
                 </div>
             </div>
             }

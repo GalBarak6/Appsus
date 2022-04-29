@@ -1,14 +1,19 @@
-
-.note-edit-img{
+.note-edit-img {
     width: 100%;
 }
-.note-edit-img .img-container{
-   display: flex;
-   justify-content: center;
-   align-content: center;
+
+.note-edit-img .img-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
     width: 100%;
     min-height: 100px;
-    border:rgb(119, 116, 116) 2px dashed;
+    border: rgb(119, 116, 116) 2px dashed;
     /* background-color: #FFA1A1; */
 }
 
+.note-edit-img img {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}

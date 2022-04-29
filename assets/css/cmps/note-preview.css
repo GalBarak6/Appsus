@@ -1,4 +1,4 @@
-.note-preview{
+.note-preview {
     padding: 20px;
     max-width: 200px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.457);
@@ -11,6 +11,12 @@
 }
 
 
-.note-preview .title{
+.note-preview .title {
     font-weight: bold;
+}
+
+.note-preview img {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
 }

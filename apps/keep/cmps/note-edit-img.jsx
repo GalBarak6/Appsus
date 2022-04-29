@@ -51,14 +51,16 @@ export class NoteEditImg extends React.Component {
                         <div>
                             <input className="input-size" type=" text" name="title" placeholder="Title"
                                 value={title} onChange={this.handleChange} />
-                            <button type="button">Pin</button>
+                            <img src="./assets/icons/pin.png" />
+                            {/* <button type="button">Pin</button> */}
                         </div>
                         <div>
                             <textarea className="textarea-size" name="txt" placeholder="Take a note..."
                                 value={txt} onChange={this.handleChange} />
                         </div>
                         <div>
-                            <button type="button" onClick={this.onSetColor}>background</button>
+                            <img src="./assets/icons/colors.png" onClick={this.onSetColor} />
+                            {/* <button type="button" onClick={this.onSetColor}>background</button> */}
                             <button>Close</button>
                         </div>
                     </form>

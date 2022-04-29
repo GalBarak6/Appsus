@@ -1,4 +1,4 @@
-.note-edit{
+.note-edit {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,7 +6,7 @@
 }
 
 
-.note-edit-container{
+.note-edit-container {
     padding: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
     border-radius: 8px;
@@ -17,13 +17,13 @@
     width: 50%;
 }
 
-.note-edit-modal{
+.note-edit-modal {
     width: 100%;
     /* height: 70%; */
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     background-color: white;
     /* border: 1px black solid; */
 
@@ -32,12 +32,8 @@
     justify-content: center;
 }
 
-
-.note-edit button {
-    border: black;
-    padding: 10px;
-    color: rgb(95, 96, 96);
+.note-edit img {
+    height: 30px;
+    width: 30px;
     cursor: pointer;
-    gap: 10px;
 }
-

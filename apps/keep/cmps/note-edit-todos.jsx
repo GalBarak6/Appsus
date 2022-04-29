@@ -9,7 +9,7 @@ export class NoteEditTodos extends React.Component {
             info: {
                 title: '',
                 todos: [],
-                todo:'',
+                todo: '',
                 // todos: [
                 //     { txt: "Driving liscence", doneAt: null },
                 //     { txt: "Coding power", doneAt: 187111111 }
@@ -58,21 +58,21 @@ export class NoteEditTodos extends React.Component {
         this.isSetColorOn = true
     }
 
-    convertTxtToToDo(txt){
-        return  { txt: txt, doneAt: null }
+    convertTxtToToDo(txt) {
+        return { txt: txt, doneAt: null }
 
     }
 
-    onAddTodo = ()=>{
-        var {todo} = this.state.note.info
-        console.log('onAddTodo',todo)
+    onAddTodo = () => {
+        var { todo } = this.state.note.info
+        console.log('onAddTodo', todo)
         todo = this.convertTxtToToDo(todo)
-        console.log('after convert',todo)
+        console.log('after convert', todo)
         this.setState((prevState) => (
             {
                 note: {
                     ...prevState.note,
-                    info: { ...prevState.note.info, todos: [...prevState.note.info.todos, todo] , todo:''}
+                    info: { ...prevState.note.info, todos: [...prevState.note.info.todos, todo], todo: '' }
                 }
             }
         ))
@@ -92,10 +92,11 @@ export class NoteEditTodos extends React.Component {
                         <div>
                             <input className="input-size" type=" text" name="title" placeholder="Title"
                                 value={title} onChange={this.handleChange} />
-                            <button type="button">Pin</button>
+                            <img src="./assets/icons/pin.png" />
+                            {/* <button type="button">Pin</button> */}
                         </div>
                         <div className="todos-list-container">
-                            <TodosList todos={todos} onAddTodo={this.onAddTodo}/>
+                            <TodosList todos={todos} onAddTodo={this.onAddTodo} />
                         </div>
                         <div>
                             <button type="button" onClick={this.onAddTodo}>+</button>
@@ -103,7 +104,8 @@ export class NoteEditTodos extends React.Component {
                                 value={todo} onChange={this.handleChange} />
                         </div>
                         <div>
-                            <button type="button" onClick={this.onSetColor}>background</button>
+                            <img src="./assets/icons/colors.png" onClick={this.onSetColor} />
+                            {/* <button type="button" onClick={this.onSetColor}>background</button> */}
                             <button>Close</button>
                         </div>
 

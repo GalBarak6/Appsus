@@ -5,14 +5,18 @@
     justify-content: space-between;
     gap: 50px;
     width: 100%;
-    /* border-bottom: 1px solid black; */
-    /* border-top: 1px solid black; */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
 }
 
 .email-preview .email-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+
+.email-preview .email-container>* {
+    border: 1px solid black;
 }
 
 .email-preview:hover {

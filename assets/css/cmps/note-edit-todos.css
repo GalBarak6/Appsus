@@ -1,10 +1,10 @@
-.todos-list-container{
+.todos-list-container {
     /* display: flex;
     justify-content: center;
     align-content: center; */
-     width: 100%;
-     min-height: 100px;
-     border:rgb(119, 116, 116) 1px solid;
+    width: 100%;
+    min-height: 100px;
+    border: rgb(119, 116, 116) 1px solid;
 }
 
 
@@ -13,3 +13,9 @@
     background: url('./assets/icons/plus.png') no-repeat left;
     background-size: 1rem;
 } */
+
+.note-edit-todos img {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}

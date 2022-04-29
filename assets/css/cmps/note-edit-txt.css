@@ -1,12 +1,12 @@
-
-.note-edit-txt{
+.note-edit-txt {
     width: 100%;
 }
+
 .note-edit-modal.note-edit-txt {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 /* .items-container {
@@ -26,3 +26,8 @@
     border-radius: 50%;
     cursor: pointer;
 } */
+
+.note-edit-txt img {
+    height: 20px;
+    width: 20px;
+}

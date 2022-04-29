@@ -75,23 +75,25 @@ export class NoteEditTxt extends React.Component {
         if (this.props.selectedNote) className = 'modal-container'
 
         return <section className="note-edit-container" >
-            <section className={"note-edit-txt "+ className}>
+            <section className={"note-edit-txt " + className}>
                 {/* <div className={"note-edit-txt " }> */}
-                    <form onSubmit={this.onSave}>
-                        <div>
-                            <input className="input-size" type=" text" name="title" placeholder="Title"
-                                value={title} onChange={this.handleChange} />
-                            <button type="button">Pin</button>
-                        </div>
-                        <div>
-                            <textarea className="textarea-size" name="txt" placeholder="Take a note..."
-                                value={txt} onChange={this.handleChange} />
-                        </div>
-                        <div>
-                            <button type="button" onClick={this.onSetColor}>background</button>
-                            <button>Close</button>
-                        </div>
-                    </form>
+                <form onSubmit={this.onSave}>
+                    <div>
+                        <input className="input-size" type=" text" name="title" placeholder="Title"
+                            value={title} onChange={this.handleChange} />
+                        <img src="./assets/icons/pin.png" />
+                        {/* <button type="button">Pin</button> */}
+                    </div>
+                    <div>
+                        <textarea className="textarea-size" name="txt" placeholder="Take a note..."
+                            value={txt} onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        <img src="./assets/icons/colors.png" onClick={this.onSetColor} />
+                        {/* <button type="button" onClick={this.onSetColor}>background</button> */}
+                        <button>Close</button>
+                    </div>
+                </form>
                 {/* </div> */}
             </section>
             <ColorInput />
