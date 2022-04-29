@@ -38,8 +38,6 @@ function query(filterBy, mailStatus) {
 
     if (filterBy) {
         let { search, type } = filterBy
-        console.log(search);
-        console.log(type);
         emails = emails.filter(email => {
             return ((email.from.toLowerCase().includes(search.toLowerCase()) ||
                 email.subject.toLowerCase().includes(search.toLowerCase()) ||
@@ -72,7 +70,6 @@ function getById(emailId) {
 }
 
 function deleteEmail(emailId) {
-    console.log(emailId);
     let emails = _loadFromStorage()
     emails = emails.filter(email => email.id !== emailId)
     gEmails = emails
@@ -81,7 +78,6 @@ function deleteEmail(emailId) {
 }
 
 function deletePreview(emailId) {
-    console.log(emailId);
     let emails = _loadFromStorage()
     emails = emails.filter(email => email.id !== emailId)
     gEmails = emails
@@ -107,7 +103,6 @@ function sendEmail(sentEmail) {
 //     email.isRead = !email.isRead
 //     _saveToStorage
 // }
-
 
 function _createEmails() {
     const emails = [

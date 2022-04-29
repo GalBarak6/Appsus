@@ -28,11 +28,9 @@ export class Email extends React.Component {
     }
 
     onSetFilter = (filterBy, mailStatus) => {
-        console.log(filterBy);
-        console.log(mailStatus);
         this.setState({ filterBy, mailStatus }, () => {
             // if (!this.state.mailStatus) this.setState(prevState => ({ mailStatus: prevState.mailStatus }))
-            console.log(this.state.filterBy, this.state.mailStatus);
+            // console.log(this.state.filterBy, this.state.mailStatus);
             this.loadEmails()
         })
     }
