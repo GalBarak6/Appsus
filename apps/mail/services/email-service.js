@@ -13,6 +13,7 @@ export const emailService = {
 const KEY = 'emailDB'
 
 let gEmails
+let gPrevFolder = 'inbox'
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -20,23 +21,22 @@ const loggedinUser = {
 }
 
 function query(filterBy, mailStatus) {
+    if (!mailStatus) mailStatus = gPrevFolder
+    else gPrevFolder = mailStatus
     console.log('query');
-    console.log(mailStatus);
-    console.log(filterBy);
     let emails = _loadFromStorage()
     if (!emails) {
         _createEmails()
         _saveToStorage()
     }
 
-    // emails = emails.filter(email => {
-    //     return(mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-    //         mailStatus === 'sent' && email.mailStatus === 'sent' ||
-    //         mailStatus === 'star' && email.mailStatus === 'star')
-    // })
+    emails = emails.filter(email => {
+        return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+            mailStatus === 'sent' && email.mailStatus === 'sent' ||
+            mailStatus === 'star' && email.mailStatus === 'star')
+    })
 
     if (filterBy) {
-        console.log('filtering together');
         let { search, type } = filterBy
         console.log(search);
         console.log(type);
@@ -48,17 +48,16 @@ function query(filterBy, mailStatus) {
                     type === 'read' && email.isread ||
                     type === 'unread' && !email.read ||
                     type === 'all')
-            (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-                mailStatus === 'sent' && email.mailStatus === 'sent' ||
-                mailStatus === 'star' && email.mailStatus === 'star')
+            // (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+            //     mailStatus === 'sent' && email.mailStatus === 'sent' ||
+            //     mailStatus === 'star' && email.mailStatus === 'star')
         })
-        } else {
-            console.log('else..');
-            emails = emails.filter(email => {
-                return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-                    mailStatus === 'sent' && email.mailStatus === 'sent' ||
-                    mailStatus === 'star' && email.mailStatus === 'star')
-            })
+        // } else {
+        //     emails = emails.filter(email => {
+        //         return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+        //             mailStatus === 'sent' && email.mailStatus === 'sent' ||
+        //             mailStatus === 'star' && email.mailStatus === 'star')
+        //     })
     }
     console.log(emails);
     return Promise.resolve(emails)
@@ -116,7 +115,12 @@ function _createEmails() {
         _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'Orit'),
         _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Chuck norris'),
         _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Harel Financials'),
-        _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'My annoying boss')
+        _createEmail('SALE SALE SALE - dont miss your opportunity!', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'KSP'),
+        _createEmail('Ready for your vacation?', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Your steam account - confirmation', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Thank you for your order', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Prime amazon - new items arrived, come check it out!', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Alondai1 invited you to coding academy', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss')
     ]
     gEmails = emails
     console.log(gEmails);

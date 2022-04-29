@@ -31,27 +31,11 @@ export class Email extends React.Component {
         console.log(filterBy);
         console.log(mailStatus);
         this.setState({ filterBy, mailStatus }, () => {
-            // if(!this.mailStatus) this.setState(prevState => ({mailStatus: prevState.mailStatus}))
+            // if (!this.state.mailStatus) this.setState(prevState => ({ mailStatus: prevState.mailStatus }))
             console.log(this.state.filterBy, this.state.mailStatus);
             this.loadEmails()
         })
     }
-
-    // onSetFilter = (filterBy) => {
-    //     console.log(filterBy);
-    //     this.setState({ filterBy }, () => {
-    //         console.log(this.state.filterBy)
-    //         this.loadEmails()
-    //     })
-    // }
-
-    // onSetFolder = (folder) => {
-    //     console.log(folder);
-    //     this.setState({ mailStatus }, () => {
-    //         console.log(this.state.filterBy)
-    //         this.loadEmails()
-    //     })
-    // }
 
     onOpenCompose = () => {
         this.setState({ isOpenCompose: true })
