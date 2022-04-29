@@ -3,6 +3,7 @@ import { NoteList } from "../apps/keep/cmps/note-list.jsx"
 import { NoteFilter } from "../apps/keep/cmps/note-filter.jsx"
 import { NoteEdit } from "../apps/keep/cmps/note-edit.jsx"
 import { NoteEditTxt } from "../apps/keep/cmps/note-edit-txt.jsx"
+import { eventBusService } from "../../../services/event-bus-service.js"
 
 
 export class Keep extends React.Component {
@@ -68,6 +69,15 @@ export class Keep extends React.Component {
     onRemoveNote = (note) => {
         console.log('onRemoveNote', note)
         noteService.removeNote(note.id)
+        .then(() => {
+       
+            eventBusService.emit('user-msg', { type: 'success', txt: 'Note deleted successfully' })
+        })
+        .catch(() => {
+            eventBusService.emit('user-msg', {
+                type: 'danger', txt: 'Could not delete note :('
+            })
+        })
         this.loadNotes()
     }
 
