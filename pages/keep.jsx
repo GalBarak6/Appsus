@@ -3,12 +3,13 @@ import { NoteList } from "../apps/keep/cmps/note-list.jsx"
 import { NoteFilter } from "../apps/keep/cmps/note-filter.jsx"
 import { NoteEdit } from "../apps/keep/cmps/note-edit.jsx"
 import { NoteEditTxt } from "../apps/keep/cmps/note-edit-txt.jsx"
+import { eventBusService } from "../../../services/event-bus-service.js"
 
 
 export class Keep extends React.Component {
     state = {
         notes: [],
-        pinnedNotes:[],
+        pinnedNotes: [],
         filterBy: null,
         isModalOpen: false,
         selectedNote: null
@@ -28,37 +29,55 @@ export class Keep extends React.Component {
     loadNotes = () => {
         noteService.query(this.state.filterBy)
             .then(res => {
-                const {notes ,pinnedNotes} = res
+                const { notes, pinnedNotes } = res
                 console.log('loadNotes', notes)
-                this.setState(prevState => ({ ...prevState, notes ,pinnedNotes }))
+                this.setState(prevState => ({ ...prevState, notes, pinnedNotes }))
             })
     }
 
     loadPinnedNotes = () => {
         noteService.getPinnedNotes()
-        .then(pinnedNotes => {
-            console.log('loadPinnedNotes', pinnedNotes)
-            this.setState(prevState => ({ ...prevState, pinnedNotes }))
-        })
+            .then(pinnedNotes => {
+                console.log('loadPinnedNotes', pinnedNotes)
+                this.setState(prevState => ({ ...prevState, pinnedNotes }))
+            })
     }
 
     onSaveNote = (note) => {
-        console.log('onSaveNote', note)
+        console.log('onSaveNote from keep', note)
+        console.log('selectedNote', this.state.selectedNote)
+        console.log('note.title', note.info.title)
+        console.log('note.title', note.info.txt)
+        if (!note.info.title && !note.info.txt) return
         noteService.saveNote(note)
             .then(() => {
                 if (this.state.isModalOpen) {
                     this.setState({ isModalOpen: false, selectedNote: null })
                     this.loadNotes()
                 } else if (!this.state.isModalOpen && !this.state.selectedNote) {
-                    this.setState({ isModalOpen: true, selectedNote: note })
                     this.loadNotes()
                 }
             })
     }
 
+    onEdit = (note)=>{
+        console.log('onEdit from keep', note)
+        this.setState({ isModalOpen: true, selectedNote: note })
+
+    }
+
     onRemoveNote = (note) => {
         console.log('onRemoveNote', note)
         noteService.removeNote(note.id)
+        .then(() => {
+       
+            eventBusService.emit('user-msg', { type: 'success', txt: 'Note deleted successfully' })
+        })
+        .catch(() => {
+            eventBusService.emit('user-msg', {
+                type: 'danger', txt: 'Could not delete note :('
+            })
+        })
         this.loadNotes()
     }
 
@@ -98,11 +117,15 @@ export class Keep extends React.Component {
         return <section className="note-app">
             <NoteFilter onSetFilter={this.onSetFilter} />
             <NoteEdit onSaveNote={this.onSaveNote} />
-            <NoteList notes = {pinnedNotes} onRemoveNote={this.onRemoveNote}
-                onSaveNote={this.onSaveNote} onCopy={this.onCopy} onPin={this.onPin} onUnPin={this.onUnPin}/>
-                <hr></hr>
-            <NoteList notes={notes} onRemoveNote={this.onRemoveNote}
-                onSaveNote={this.onSaveNote} onCheck={this.onCheck} onCopy={this.onCopy} onPin={this.onPin}/>
+            <NoteList notes={pinnedNotes} onRemoveNote={this.onRemoveNote} 
+                onCopy={this.onCopy} 
+                onEdit={this.onEdit}
+                onPin={this.onPin} onUnPin={this.onUnPin} />
+            <hr></hr>
+            <NoteList notes={notes} onRemoveNote={this.onRemoveNote}  
+                onCheck={this.onCheck} 
+                onEdit={this.onEdit}
+                onCopy={this.onCopy} onPin={this.onPin} />
             {isModalOpen && <div className="note-edit-modal ">
                 {/* <NoteEdit onSaveNote={this.onSaveNote} selectedNote={this.state.selectedNote} /> */}
                 <NoteEditTxt onSaveNote={this.onSaveNote} selectedNote={this.state.selectedNote} />

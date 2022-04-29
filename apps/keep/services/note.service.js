@@ -62,6 +62,7 @@ function removeNote(noteId) {
     const noteIdx = gNotes.findIndex(note => note.id === noteId)
     gNotes.splice(noteIdx, 1)
     _saveToStorage()
+    return Promise.resolve()
 }
 
 function _updateNote(noteToUpdate) {

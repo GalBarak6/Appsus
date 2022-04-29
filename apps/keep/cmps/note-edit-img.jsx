@@ -15,6 +15,26 @@ export class NoteEditImg extends React.Component {
         }
     }
 
+    handleChange = ({ target }) => {
+        const field = target.name
+        console.log(field)
+        const value = target.value
+        this.setState((prevState) => (
+            {
+                note: {
+                    ...prevState.note,
+                    info: { ...prevState.note.info, [field]: value }
+                }
+            }
+        ))
+    }
+
+    onSave = (ev) => {
+        ev.preventDefault()
+        console.log('onSave from note-edit-img', ev.target)
+        this.props.onSaveNote(this.state.note)
+    }
+
     render() {
 
         const { title, txt } = this.state.note.info
@@ -39,7 +59,7 @@ export class NoteEditImg extends React.Component {
                         </div>
                         <div>
                             <button type="button" onClick={this.onSetColor}>background</button>
-                            <button>close</button>
+                            <button>Close</button>
                         </div>
                     </form>
                 </div>

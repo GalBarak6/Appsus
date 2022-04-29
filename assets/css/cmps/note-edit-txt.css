@@ -1,3 +1,7 @@
+
+.note-edit-txt{
+    width: 100%;
+}
 .note-edit-modal.note-edit-txt {
     position: absolute;
     top: 50%;
