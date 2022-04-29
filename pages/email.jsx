@@ -31,10 +31,27 @@ export class Email extends React.Component {
         console.log(filterBy);
         console.log(mailStatus);
         this.setState({ filterBy, mailStatus }, () => {
+            // if(!this.mailStatus) this.setState(prevState => ({mailStatus: prevState.mailStatus}))
             console.log(this.state.filterBy, this.state.mailStatus);
             this.loadEmails()
         })
     }
+
+    // onSetFilter = (filterBy) => {
+    //     console.log(filterBy);
+    //     this.setState({ filterBy }, () => {
+    //         console.log(this.state.filterBy)
+    //         this.loadEmails()
+    //     })
+    // }
+
+    // onSetFolder = (folder) => {
+    //     console.log(folder);
+    //     this.setState({ mailStatus }, () => {
+    //         console.log(this.state.filterBy)
+    //         this.loadEmails()
+    //     })
+    // }
 
     onOpenCompose = () => {
         this.setState({ isOpenCompose: true })
@@ -49,10 +66,10 @@ export class Email extends React.Component {
         return <section className="email">
             <EmailFilter onSetFilter={this.onSetFilter} />
             <div className="main-container">
-            <EmailList emails={emails} loadEmails={this.loadEmails} />
-            <EmailSideBar onSetFilter={this.onSetFilter} onOpenCompose={this.onOpenCompose} />
+                <EmailList emails={emails} loadEmails={this.loadEmails} />
+                <EmailSideBar onSetFilter={this.onSetFilter} onOpenCompose={this.onOpenCompose} />
             </div>
-            {this.state.isOpenCompose && <EmailCompose onCloseCompose={this.onCloseCompose} loadEmails={this.loadEmails}/>}
+            {this.state.isOpenCompose && <EmailCompose onCloseCompose={this.onCloseCompose} loadEmails={this.loadEmails} />}
         </section>
     }
 }

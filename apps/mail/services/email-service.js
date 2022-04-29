@@ -48,17 +48,17 @@ function query(filterBy, mailStatus) {
                     type === 'read' && email.isread ||
                     type === 'unread' && !email.read ||
                     type === 'all')
-            // (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-            //     mailStatus === 'sent' && email.mailStatus === 'sent' ||
-            //     mailStatus === 'star' && email.mailStatus === 'star')
+            (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+                mailStatus === 'sent' && email.mailStatus === 'sent' ||
+                mailStatus === 'star' && email.mailStatus === 'star')
         })
-        // } else {
-        //     console.log('else..');
-        //     emails = emails.filter(email => {
-        //         return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-        //             mailStatus === 'sent' && email.mailStatus === 'sent' ||
-        //             mailStatus === 'star' && email.mailStatus === 'star')
-        //     })
+        } else {
+            console.log('else..');
+            emails = emails.filter(email => {
+                return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
+                    mailStatus === 'sent' && email.mailStatus === 'sent' ||
+                    mailStatus === 'star' && email.mailStatus === 'star')
+            })
     }
     console.log(emails);
     return Promise.resolve(emails)
@@ -109,19 +109,11 @@ function sendEmail(sentEmail) {
 //     _saveToStorage
 // }
 
-// function compose(email) {
-//     let cars = _loadFromStorage()
-//     const email = _createEmail(subject, body, to, status)
-//     cars = [car, ...cars]
-//     _saveToStorage(cars)
-//     return Promise.resolve()
-// }
-
 
 function _createEmails() {
     const emails = [
         _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com', 'inbox', 'Gal'),
-        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'star', 'Orit'),
+        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'Orit'),
         _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Chuck norris'),
         _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Harel Financials'),
         _createEmail('birthday party!', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'My annoying boss')
