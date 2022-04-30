@@ -9,25 +9,17 @@
     transform: translate(-50%, -50%);
 }
 
-/* .items-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    display: flex;
-    gap: 10px;
-    padding: 10px;
-    background: lightgoldenrodyellow;
+.note-edit-txt input{
+    padding: 5px;
+    font-size: 1rem;
 }
 
-.item {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-} */
+.note-edit-txt textarea{
+    padding: 5px;
+    font-size: 0.9rem;
+}
 
 .note-edit-txt img {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }

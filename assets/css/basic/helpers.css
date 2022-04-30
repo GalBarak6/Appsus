@@ -18,3 +18,13 @@
     height: 100px;
 
 }
+
+.no-border{
+    border: none;
+}
+.no-border:focus{
+    outline: none;
+}
+.no-rezise{
+    resize: none;
+}

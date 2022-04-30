@@ -33,7 +33,7 @@ export class NoteEdit extends React.Component {
                 <div onClick={this.onAddDefaultNote}>
                     Take a note...
                 </div>
-                <div>
+                <div className="icons flex">
                     <img src="./assets/icons/plus.png" onClick={this.onAddNote} name="note-txt" />
                     <img src="./assets/icons/img.png" onClick={this.onAddNote} name="note-img" />
                     <img src="./assets/icons/todo.png" onClick={this.onAddNote} name="note-todos" />

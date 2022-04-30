@@ -1,4 +1,4 @@
-// import { ColorInput } from './dynamic-inputs/color-input.jsx'
+import { ColorInput } from './dynamic-inputs/color-input.jsx'
 import { TodosList } from "./todos-list.jsx"
 
 export class NoteEditTodos extends React.Component {
@@ -15,7 +15,10 @@ export class NoteEditTodos extends React.Component {
                 //     { txt: "Coding power", doneAt: 187111111 }
                 // ]
             },
-            isPinned: false
+            isPinned: false,
+            style:{
+                backgroundColor:''
+            }
         }
     }
 
@@ -46,6 +49,23 @@ export class NoteEditTodos extends React.Component {
             }
         ))
     }
+
+
+    handleStyleChange = (field, value) => {
+        console.log('handleStyleChange')
+        console.log('field',field)
+        console.log('value', value)
+
+        this.setState((prevState) => (
+             {
+                note: {
+                    ...prevState.note,
+                    style: { ...prevState.note.style, [field]: value }
+                }
+            }
+        ))
+    }
+   
 
     onSave = (ev) => {
         ev.preventDefault()
@@ -80,17 +100,18 @@ export class NoteEditTodos extends React.Component {
     }
 
     render() {
+        const {style} = this.state.note
         const { title, todo, todos } = this.state.note.info
         console.log('todos', todos)
         var className
         if (this.props.selectedNote) className = 'note-edit-modal'
 
-        return <section className="note-edit-container" >
+        return <section  style={style} className="note-edit-container" >
             <section className="note-edit-todos">
                 <div className={"note-edit-todos "}>
                     <form onSubmit={this.onSave}>
-                        <div>
-                            <input className="input-size" type=" text" name="title" placeholder="Title"
+                        <div className="flex space-between">
+                            <input style={style}  className="no-border input-size" type=" text" name="title" placeholder="Title"
                                 value={title} onChange={this.handleChange} />
                             <img src="./assets/icons/pin.png" />
                             {/* <button type="button">Pin</button> */}
@@ -100,10 +121,10 @@ export class NoteEditTodos extends React.Component {
                         </div>
                         <div>
                             <button type="button" onClick={this.onAddTodo}>+</button>
-                            <input className="input-size" type=" text" name="todo" placeholder="List item"
+                            <input style={style} className="no-rezise no-border textarea-size" type=" text" name="todo" placeholder="List item"
                                 value={todo} onChange={this.handleChange} />
                         </div>
-                        <div>
+                        <div className="flex space-between">
                             <img src="./assets/icons/colors.png" onClick={this.onSetColor} />
                             {/* <button type="button" onClick={this.onSetColor}>background</button> */}
                             <button>Close</button>
@@ -112,7 +133,7 @@ export class NoteEditTodos extends React.Component {
                     </form>
                 </div>
             </section>
-            {/* <ColorInput /> */}
+            <ColorInput handleStyleChange={this.handleStyleChange}/>
         </section>
     }
 }

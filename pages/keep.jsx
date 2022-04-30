@@ -51,6 +51,7 @@ export class Keep extends React.Component {
         console.log('note.title', note.info.title)
         console.log('note.title', note.info.txt)
         if ((note.type === 'note-txt' && !note.info.title && !note.info.txt)) return
+        if ((note.type === 'note-img' && !note.info.title && !note.info.txt)) return
 
         if (note.type === 'note-todos' && !note.info.title && note.info.todos.length === 0) {
             console.log('length', note.info.todos.length)

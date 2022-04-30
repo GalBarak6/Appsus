@@ -1,15 +1,19 @@
 
 .items-container {
-    position: fixed;
+    position: absolute;
+    bottom: -10px;;
     display: flex;
     gap: 10px;
-    padding: 10px;
+    padding: 5px;
     /* background: lightgoldenrodyellow; */
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.457);
+    border-radius: 8px;
+    background-color: white;
 }
 
 .item {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     /* border: 1px solid black; */
     border-radius: 50%;
     cursor: pointer;

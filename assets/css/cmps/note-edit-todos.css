@@ -1,18 +1,10 @@
-.todos-list-container {
-    /* display: flex;
-    justify-content: center;
-    align-content: center; */
+.note-edit-todos {
     width: 100%;
-    min-height: 100px;
-    border: rgb(119, 116, 116) 1px solid;
 }
 
-
-/* .note-edit-todos .icon {
-    padding-left: 25px;
-    background: url('./assets/icons/plus.png') no-repeat left;
-    background-size: 1rem;
-} */
+.todos-list-container {
+    width: 100%;
+}
 
 .note-edit-todos img {
     height: 30px;

@@ -10,11 +10,16 @@ export class NoteEditTxt extends React.Component {
                 txt: '',
             },
 
-            isPinned: false
-        }
+            isPinned: false,
+            style: {
+                backgroundColor: ''
+            }
+        },
+
+        isSetColorOn: false
+
     }
 
-    isSetColorOn = false
 
     componentDidMount() {
         this.loadNote()
@@ -41,62 +46,64 @@ export class NoteEditTxt extends React.Component {
         ))
     }
 
+    handleStyleChange = (field, value) => {
+        console.log('handleStyleChange')
+        console.log('field', field)
+        console.log('value', value)
+
+        this.setState((prevState) => (
+            {
+                note: {
+                    ...prevState.note,
+                    style: { ...prevState.note.style, [field]: value }
+                }
+            }
+        ))
+    }
+
     onSave = (ev) => {
         ev.preventDefault()
         console.log('onSave', ev.target)
         this.props.onSaveNote(this.state.note)
-        // this.clearNote()
     }
 
-    // clearNote = () => {
-    //     console.log('clearNote')
-    //     this.setState({
-
-    //         note: {
-    //             type: 'note-txt',
-    //             info: {
-    //                 title: '',
-    //                 txt: '',
-    //             },
-    //             isPinned: false
-    //         }
-    //     })
-    // }
-
-    onSetColor = () => {
-        console.log('onSetColor')
-        this.isSetColorOn = true
+    onSetColorOn = () => {
+        console.log('onSetColorOn')
+         this.setState({isSetColorOn: true})
     }
 
 
     render() {
+        const { style } = this.state.note
+        console.log('style', style)
         const { title, txt } = this.state.note.info
         var className
         if (this.props.selectedNote) className = 'modal-container'
 
-        return <section className="note-edit-container" >
+        return <section style={style} className="note-edit-container" >
             <section className={"note-edit-txt " + className}>
                 {/* <div className={"note-edit-txt " }> */}
                 <form onSubmit={this.onSave}>
-                    <div>
-                        <input className="input-size" type=" text" name="title" placeholder="Title"
+                    <div className="flex space-between">
+                        <input style={style} className="no-border input-size" type=" text" name="title" placeholder="Title"
                             value={title} onChange={this.handleChange} />
                         <img src="./assets/icons/pin.png" />
                         {/* <button type="button">Pin</button> */}
                     </div>
                     <div>
-                        <textarea className="textarea-size" name="txt" placeholder="Take a note..."
+                        <textarea style={style} className=" no-rezise no-border textarea-size" name="txt" placeholder="Take a note..."
                             value={txt} onChange={this.handleChange} />
                     </div>
-                    <div>
-                        <img src="./assets/icons/colors.png" onClick={this.onSetColor} />
+                    <div className="flex space-between">
+                        <img src="./assets/icons/colors.png" onClick={this.onSetColorOn} />
                         {/* <button type="button" onClick={this.onSetColor}>background</button> */}
                         <button>Close</button>
                     </div>
                 </form>
                 {/* </div> */}
             </section>
-            <ColorInput />
+            { this.state.isSetColorOn && <ColorInput handleStyleChange={this.handleStyleChange} />}
+            
         </section>
     }
 }

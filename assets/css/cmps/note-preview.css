@@ -1,12 +1,12 @@
 .note-preview {
-    padding: 20px;
-    max-width: 200px;
+    padding: 15px;
+    max-width: 250px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.457);
     /* border: 1px solid rgb(117, 116, 116); */
     border-radius: 3px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     gap: 15px;
 }
 
@@ -16,7 +16,11 @@
 }
 
 .note-preview img {
-    height: 20px;
-    width: 20px;
+    height: 1rem;
+    width: 1rem;
     cursor: pointer;
+}
+
+.note-preview .icons{
+    gap:1rem;
 }

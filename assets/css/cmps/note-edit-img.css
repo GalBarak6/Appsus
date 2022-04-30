@@ -17,3 +17,18 @@
     width: 20px;
     cursor: pointer;
 }
+
+.note-edit-img input{
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.note-edit-img textarea{
+    padding: 5px;
+    font-size: 0.9rem;
+}
+
+.note-edit-img img {
+    height: 30px;
+    width: 30px;
+}

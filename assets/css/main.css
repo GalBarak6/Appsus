@@ -28,6 +28,8 @@
 @import './cmps/note-img.css';
 @import './cmps/note-edit-todos.css';
 @import './cmps/color-input.css';
+@import './cmps/note-txt.css';
+@import './cmps/note-todos.css';
 
 
 /* PAGES */
