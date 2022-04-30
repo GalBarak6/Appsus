@@ -7,13 +7,25 @@
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.457);
 }
 
+
 .email-preview .email-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     gap: 1.5rem;
     padding: 0 20px;
+}
+
+@media (min-width: 880px) {
+    .email-preview .email-container {
+        flex-direction: row;
+    }
+
+    .email-preview .email-container .txt {
+        flex-direction: row;
+    }
 }
 
 .email-preview:hover {
@@ -63,6 +75,7 @@ p {
 .email-container .txt {
     flex: 8;
     gap: 0.7rem;
+    flex-direction: column;
 }
 
 .email-container .date {

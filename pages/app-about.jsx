@@ -19,9 +19,9 @@ export function About() {
             <h1>Contact us:</h1>
             <div className="contact-icons">
                 <a href="https://www.facebook.com/" target="_blank"><img src="./assets/icons/facebook.png" alt="" /></a>
-                <a href="https://www.instagram.com/"></a><img src="./assets/icons/instagram.png" alt="" />
-                <a href="https://www.linkedin.com/"></a><img src="./assets/icons/linkedin.png" alt="" />
-                <a href="https://twitter.com/?lang=he"></a><img src="./assets/icons/twitter.png" alt="" />
+                <a href="https://www.instagram.com/" target="_blank"><img src="./assets/icons/instagram.png" alt="" /></a>
+                <a href="https://www.linkedin.com/" target="_blank"><img src="./assets/icons/linkedin.png" alt="" /></a>
+                <a href="https://twitter.com/?lang=he" target="_blank"><img src="./assets/icons/twitter.png" alt="" /></a>
             </div>
         </div>
     </section>
