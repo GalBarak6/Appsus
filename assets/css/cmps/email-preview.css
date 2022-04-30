@@ -7,7 +7,6 @@
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.457);
 }
 
-
 .email-preview .email-container {
     display: flex;
     flex-direction: column;
@@ -18,7 +17,7 @@
     padding: 0 20px;
 }
 
-@media (min-width: 880px) {
+@media (min-width: 640px) {
     .email-preview .email-container {
         flex-direction: row;
     }
@@ -79,7 +78,7 @@ p {
 }
 
 .email-container .date {
-    flex: 1;
+    flex: 2;
 }
 
 .mail-content .link {
