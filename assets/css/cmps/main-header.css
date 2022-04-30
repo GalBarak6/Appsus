@@ -14,11 +14,9 @@
     color: antiquewhite;
 }
 
-
 .active {
     color: antiquewhite;
 }
-
 
 .main-header nav>*:not(last-child) {
     padding-inline-start: 15px;

@@ -3,7 +3,6 @@ import { eventBusService } from "../../../services/event-bus-service.js"
 
 export class EmailCompose extends React.Component {
 
-
     state = {
         email: {
             subject: '',
@@ -15,8 +14,6 @@ export class EmailCompose extends React.Component {
     onHandleChange = ({ target }) => {
         const value = target.value
         const field = target.name
-        console.log(value);
-        console.log(field);
         this.setState((prevState) => ({ email: { ...prevState.email, [field]: value } }))
     }
 

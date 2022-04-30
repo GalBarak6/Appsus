@@ -8,7 +8,6 @@ export class EmailDetails extends React.Component {
         email: null
     }
 
-
     componentDidMount() {
         this.loadEmail()
     }

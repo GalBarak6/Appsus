@@ -11,13 +11,11 @@ export class EmailFilter extends React.Component {
         const value = target.value
         const field = (target.type === 'text') ? target.name : 'type'
         this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: value } }), () => {
-            // console.log(this.props.mailStatus);
             this.props.onSetFilter(this.state.filterBy)
         })
     }
 
     render() {
-        console.log(this.state.filterBy);
         return <section className="email-filter">
             <input type="text" name="search" placeholder="Search mail" className="icon" onChange={this.onHandleChange} />
             <select name="filter" id="filter" onChange={this.onHandleChange}>

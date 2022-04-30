@@ -5,13 +5,10 @@
     flex: 1;
 }
 
-.email-side-bar>* {
-    cursor: pointer;
-}
-
 .email-side-bar img {
     height: 23px;
     width: 23px;
+    cursor: pointer;
 }
 
 .email-side-bar .add {
@@ -33,8 +30,8 @@
     gap: 15px;
 }
 
-.email-side-bar>*:hover {
-    color: rgb(116, 136, 149);
+.email-side-bar .folder:hover {
+    transform: scale(1.2);
 }
 
 .email-side-bar .add img {

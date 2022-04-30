@@ -25,7 +25,6 @@ const loggedinUser = {
 function query(filterBy, mailStatus) {
     if (!mailStatus) mailStatus = gPrevFolder
     else gPrevFolder = mailStatus
-    console.log('query');
     let emails = _loadFromStorage()
     if (!emails) {
         _createEmails()
@@ -49,18 +48,8 @@ function query(filterBy, mailStatus) {
                     type === 'read' && email.isRead ||
                     type === 'unread' && !email.isRead ||
                     type === 'all')
-            // (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-            //     mailStatus === 'sent' && email.mailStatus === 'sent' ||
-            //     mailStatus === 'star' && email.mailStatus === 'star')
         })
-        // } else {
-        //     emails = emails.filter(email => {
-        //         return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
-        //             mailStatus === 'sent' && email.mailStatus === 'sent' ||
-        //             mailStatus === 'star' && email.mailStatus === 'star')
-        //     })
     }
-    console.log(emails);
     return Promise.resolve(emails)
 }
 
@@ -71,23 +60,6 @@ function getById(emailId) {
     })
     return Promise.resolve(email)
 }
-
-// function deleteEmail(emailId) {
-//     _saveDeleted(emailId)
-//     let emails = _loadFromStorage()
-//     emails = emails.filter(email => email.id !== emailId)
-//     gEmails = emails
-//     _saveToStorage()
-//     return Promise.resolve()
-// }
-
-// function deletePreview(emailId) {
-//     _saveDeleted(emailId)
-//     let emails = _loadFromStorage()
-//     emails = emails.filter(email => email.id !== emailId)
-//     gEmails = emails
-//     _saveToStorage()
-// }
 
 function moveMailToTrash(emailId) {
     let emails = _loadFromStorage()
@@ -137,10 +109,8 @@ function backToInbox(emailId) {
 }
 
 function unreadCount() {
-    console.log('service count');
     let emails = _loadFromStorage()
     emails = emails.filter(email => !email.isRead && email.mailStatus === 'inbox')
-    console.log(emails.length);
     const count = emails.length
     return Promise.resolve(count)
 }
@@ -167,7 +137,6 @@ function _createEmails() {
         _createEmail('Windows 11 just arrived! come check it out', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Microsoft')
     ]
     gEmails = emails
-    console.log(gEmails);
 }
 
 function _createEmail(subject, body, to, mailStatus, from) {
