@@ -16,7 +16,19 @@ export class NoteEditImg extends React.Component {
             style:{
                 backgroundColor:''
             }
-        }
+        },
+        isSetColorOn: false
+    }
+
+    componentDidMount() {
+        this.loadNote()
+    }
+
+    loadNote = () => {
+        console.log('loadNote')
+        const note = this.props.selectedNote
+        if (!note) return
+        this.setState({ note })
     }
 
     handleChange = ({ target }) => {
@@ -54,6 +66,12 @@ export class NoteEditImg extends React.Component {
         this.props.onSaveNote(this.state.note)
     }
 
+    
+    onSetColorOn = () => {
+        console.log('onSetColorOn')
+         this.setState({isSetColorOn: true})
+    }
+
     render() {
         const {style} = this.state.note
 
@@ -79,7 +97,7 @@ export class NoteEditImg extends React.Component {
                                 value={txt} onChange={this.handleChange} />
                         </div>
                         <div  className="flex space-between">
-                            <img src="./assets/icons/colors.png" onClick={this.onSetColor} />
+                            <img src="./assets/icons/colors.png"  onClick={this.onSetColorOn}/>
                             {/* <button type="button" onClick={this.onSetColor}>background</button> */}
                             <button>Close</button>
                         </div>
@@ -87,7 +105,7 @@ export class NoteEditImg extends React.Component {
                 </div>
             </section>
 
-            <ColorInput handleStyleChange={this.handleStyleChange}/>
+            { this.state.isSetColorOn && <ColorInput handleStyleChange={this.handleStyleChange} />}
         </section>
 
     }
