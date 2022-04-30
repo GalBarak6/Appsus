@@ -1,8 +1,35 @@
 import { NoteTxt } from "./note-txt.jsx"
 import { NoteImg } from "./note-img.jsx"
 import { NoteTodos } from "./note-todos.jsx"
+import { ColorInput } from './dynamic-inputs/color-input.jsx'
 
 export class NotePreview extends React.Component {
+
+    state = {
+        isSetColorOn: false,
+    }
+
+    onSetColorOn = () => {
+        console.log('onSetColorOn from preview')
+        this.setState({ isSetColorOn: true })
+    }
+
+    handleStyleChange = (field, value) => {
+        console.log('handleStyleChange')
+        console.log('field', field)
+        console.log('value', value)
+        this.setState({ isSetColorOn: false})
+        this.props.onEditColor(this.props.note,value)
+
+        // this.setState((prevState) => (
+        //     {
+        //         note: {
+        //             ...prevState.note,
+        //             style: { ...prevState.note.style, [field]: value }
+        //         }
+        //     }
+        // ))
+    }
 
     onRemoveNote = () => {
         console.log('onRemoveNote', this.props.note)
@@ -17,17 +44,16 @@ export class NotePreview extends React.Component {
         return <section style={style} className="note-preview flex space-between">
             <div className="flex space-between">
                 <DynamicCmp type={type} note={note} />
-
-
             </div>
 
             <div className="icons flex space-between" >
-                <img src="./assets/icons/colors.png" />
+                <img src="./assets/icons/colors.png" onClick={() => {
+                    this.onSetColorOn()
+                }} />
                 <img src="./assets/icons/delete2.png" onClick={this.onRemoveNote} />
                 {/* <button onClick={() => { this.props.onCheck(note) }}>Check</button> */}
                 <img src="./assets/icons/copy.png" onClick={() => { this.props.onCopy(note) }} />
                 <img src="./assets/icons/edit.png" onClick={() => { this.props.onEdit(note) }} />
-
 
                 {isPinned && <div>
                     <img src="./assets/icons/unpin.png" onClick={() => { this.props.onUnPin(note) }} />
@@ -37,6 +63,7 @@ export class NotePreview extends React.Component {
                         <img src="./assets/icons/pin.png" onClick={() => { this.props.onPin(note) }} />
                     </div>
                 }
+                {this.state.isSetColorOn && <ColorInput handleStyleChange={this.handleStyleChange} />}
 
             </div>
         </section>

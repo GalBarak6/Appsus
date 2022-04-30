@@ -15,18 +15,14 @@ export class NoteEditTxt extends React.Component {
                 backgroundColor: ''
             }
         },
-
         isSetColorOn: false
-
     }
-
 
     componentDidMount() {
         this.loadNote()
     }
 
     loadNote = () => {
-        console.log('loadNote')
         const note = this.props.selectedNote
         if (!note) return
         this.setState({ note })
@@ -47,10 +43,6 @@ export class NoteEditTxt extends React.Component {
     }
 
     handleStyleChange = (field, value) => {
-        console.log('handleStyleChange')
-        console.log('field', field)
-        console.log('value', value)
-
         this.setState((prevState) => (
             {
                 note: {
@@ -63,12 +55,10 @@ export class NoteEditTxt extends React.Component {
 
     onSave = (ev) => {
         ev.preventDefault()
-        console.log('onSave', ev.target)
         this.props.onSaveNote(this.state.note)
     }
 
     onSetColorOn = () => {
-        console.log('onSetColorOn')
          this.setState({isSetColorOn: true})
     }
 

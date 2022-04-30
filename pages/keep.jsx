@@ -21,13 +21,6 @@ export class Keep extends React.Component {
         this.loadNotes()
     }
 
-    // loadNotes = () => {
-    //     noteService.query(this.state.filterBy)
-    //         .then(notes => {
-    //             console.log('loadNotes', notes)
-    //             this.setState(prevState => ({ ...prevState, notes }))
-    //         })
-    // }
     loadNotes = () => {
         noteService.query(this.state.filterBy)
             .then(res => {
@@ -49,7 +42,7 @@ export class Keep extends React.Component {
         console.log('onSaveNote from keep', note)
         console.log('selectedNote', this.state.selectedNote)
         console.log('note.title', note.info.title)
-        console.log('note.title', note.info.txt)
+        console.log('note.txt', note.info.txt)
         if ((note.type === 'note-txt' && !note.info.title && !note.info.txt)) return
         if ((note.type === 'note-img' && !note.info.title && !note.info.txt)) return
 
@@ -76,13 +69,14 @@ export class Keep extends React.Component {
     }
 
     onEdit = (note) => {
-        console.log('onEdit from keep', note)
-        // this.setState({ isModalOpen: true, selectedNote: note })
-
         this.setState(prevState => ({ ...prevState, isModalOpen: true, selectedNote: note }))
-        console.log('onEdit, selected note', this.state.selectedNote)
-        console.log('onEdit, note', note)
+    }
 
+    onEditColor = (note, color) => {
+        console.log('onEditColor', note)
+        note.style= {'backgroundColor': color}
+        this.onSaveNote(note)
+        // this.setState(prevState => ({ ...prevState, selectedNote: note }))
     }
 
     onRemoveNote = (note) => {
@@ -149,11 +143,13 @@ export class Keep extends React.Component {
             <NoteList notes={pinnedNotes} onRemoveNote={this.onRemoveNote}
                 onCopy={this.onCopy}
                 onEdit={this.onEdit}
+                onEditColor={this.onEditColor}
                 onPin={this.onPin} onUnPin={this.onUnPin} />
             <hr></hr>
             <NoteList notes={notes} onRemoveNote={this.onRemoveNote}
                 onCheck={this.onCheck}
                 onEdit={this.onEdit}
+                onEditColor={this.onEditColor}
                 onCopy={this.onCopy} onPin={this.onPin} />
             {isModalOpen && <div className="note-edit-modal ">
 

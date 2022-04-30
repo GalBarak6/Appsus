@@ -10,26 +10,20 @@ export class NoteEditTodos extends React.Component {
                 title: '',
                 todos: [],
                 todo: '',
-                // todos: [
-                //     { txt: "Driving liscence", doneAt: null },
-                //     { txt: "Coding power", doneAt: 187111111 }
-                // ]
             },
             isPinned: false,
-            style:{
-                backgroundColor:''
+            style: {
+                backgroundColor: ''
             }
-        }
+        },
+        isSetColorOn: false
     }
-
-    // isSetColorOn = false
 
     componentDidMount() {
         this.loadNote()
     }
 
     loadNote = () => {
-        console.log('loadNote')
         const note = this.props.selectedNote
         if (!note) return
         this.setState({ note })
@@ -37,9 +31,7 @@ export class NoteEditTodos extends React.Component {
 
     handleChange = ({ target }) => {
         const field = target.name
-        console.log('field', field)
         const value = target.value
-        console.log('value', value)
         this.setState((prevState) => (
             {
                 note: {
@@ -52,12 +44,8 @@ export class NoteEditTodos extends React.Component {
 
 
     handleStyleChange = (field, value) => {
-        console.log('handleStyleChange')
-        console.log('field',field)
-        console.log('value', value)
-
         this.setState((prevState) => (
-             {
+            {
                 note: {
                     ...prevState.note,
                     style: { ...prevState.note.style, [field]: value }
@@ -65,29 +53,24 @@ export class NoteEditTodos extends React.Component {
             }
         ))
     }
-   
+
 
     onSave = (ev) => {
         ev.preventDefault()
-        console.log('onSave', ev.target)
         this.props.onSaveNote(this.state.note)
     }
 
-    onSetColor = () => {
-        console.log('onSetColor')
-        this.isSetColorOn = true
+    onSetColorOn = () => {
+        this.setState({ isSetColorOn: true })
     }
 
     convertTxtToToDo(txt) {
         return { txt: txt, doneAt: null }
-
     }
 
     onAddTodo = () => {
         var { todo } = this.state.note.info
-        console.log('onAddTodo', todo)
         todo = this.convertTxtToToDo(todo)
-        console.log('after convert', todo)
         this.setState((prevState) => (
             {
                 note: {
@@ -99,41 +82,58 @@ export class NoteEditTodos extends React.Component {
 
     }
 
+    onPin = () => {
+        console.log('onPin')
+        this.setState((prevState) => (
+            {
+                note: {
+                    ...prevState.note,
+                    isPinned: true
+                }
+            }
+        ))
+    }
+
     render() {
-        const {style} = this.state.note
+        const { style } = this.state.note
         const { title, todo, todos } = this.state.note.info
         console.log('todos', todos)
         var className
         if (this.props.selectedNote) className = 'note-edit-modal'
 
-        return <section  style={style} className="note-edit-container" >
+        return <section style={style} className="note-edit-container" >
             <section className="note-edit-todos">
                 <div className={"note-edit-todos "}>
                     <form onSubmit={this.onSave}>
                         <div className="flex space-between">
-                            <input style={style}  className="no-border input-size" type=" text" name="title" placeholder="Title"
+                            <input style={style} className="no-border input-size" type=" text" name="title" placeholder="Title"
                                 value={title} onChange={this.handleChange} />
-                            <img src="./assets/icons/pin.png" />
-                            {/* <button type="button">Pin</button> */}
+                            <img src="./assets/icons/pin.png" onClick={this.onPin} />
                         </div>
                         <div className="todos-list-container">
                             <TodosList todos={todos} onAddTodo={this.onAddTodo} />
                         </div>
                         <div>
                             <button type="button" onClick={this.onAddTodo}>+</button>
-                            <input style={style} className="no-rezise no-border textarea-size" type=" text" name="todo" placeholder="List item"
+
+                            <input style={style} className="no-rezise no-border textarea-size" type=" text" name="todo" placeholder="List item..."
                                 value={todo} onChange={this.handleChange} />
                         </div>
                         <div className="flex space-between">
-                            <img src="./assets/icons/colors.png" onClick={this.onSetColor} />
-                            {/* <button type="button" onClick={this.onSetColor}>background</button> */}
+                            <div>
+                                <img src="./assets/icons/colors.png" onClick={this.onSetColorOn} />
+                                <img src="./assets/icons/plus.png" onClick={this.onAddTodo} />
+
+                            </div>
+                            {/* <button type="button" onClick={this.onAddTodo}>Add List item</button> */}
                             <button>Close</button>
                         </div>
 
                     </form>
                 </div>
             </section>
-            <ColorInput handleStyleChange={this.handleStyleChange}/>
+            {this.state.isSetColorOn && <ColorInput handleStyleChange={this.handleStyleChange} />}
+
         </section>
     }
 }
