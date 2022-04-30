@@ -55,7 +55,8 @@ export class EmailPreview extends React.Component {
                 <Link to={`/email/${email.id}`} className="link">
                     <article className="email-container">
                         <div className="from">
-                            <h4 className={subjClass}>{email.from}</h4>
+                            {(email.mailStatus !== 'sent') ? <h4 className={subjClass}>{email.from}</h4> : <h4 className={subjClass}>{email.to}</h4>}
+                            {/* <h4 className={subjClass}>{email.from}</h4> */}
                         </div>
                         <div className="txt flex align-center">
                             <h4 className={subjClass}>{email.subject.substring(0, 50)}</h4>

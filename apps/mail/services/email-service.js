@@ -147,16 +147,16 @@ function unreadCount() {
 
 function _createEmails() {
     const emails = [
-        _createEmail('How are you', utilService.makeLorem(20), 'user@appsus.com', 'inbox', 'Gal'),
-        _createEmail('hey hey hey', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'Orit'),
-        _createEmail('testing number 3', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Chuck norris'),
-        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'Harel Financials'),
-        _createEmail('SALE SALE SALE - dont miss your opportunity!', utilService.makeLorem(50), 'user@gmail.com', 'sent', 'KSP'),
-        _createEmail('Ready for your vacation?', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
-        _createEmail('Your steam account - confirmation', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
-        _createEmail('Thank you for your order', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
-        _createEmail('Prime amazon - new items arrived, come check it out!', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss'),
-        _createEmail('Alondai1 invited you to coding academy', utilService.makeLorem(50), 'user@appsus.com', 'inbox', 'My annoying boss')
+        _createEmail('How are you', utilService.makeLorem(70), 'user@appsus.com', 'inbox', 'Gal'),
+        _createEmail('hey hey hey', utilService.makeLorem(70), 'user@appsus.com', 'inbox', 'Orit'),
+        _createEmail('testing number 3', utilService.makeLorem(70), 'user@gmail.com', 'sent', 'Chuck norris'),
+        _createEmail('schedule tomorrow`s meeting', utilService.makeLorem(70), 'user@gmail.com', 'sent', 'Harel Financials'),
+        _createEmail('SALE SALE SALE - dont miss your opportunity!', utilService.makeLorem(70), 'user@gmail.com', 'sent', 'KSP'),
+        _createEmail('Ready for your vacation?', utilService.makeLorem(70), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Your steam account - confirmation', utilService.makeLorem(70), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Thank you for your order', utilService.makeLorem(70), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Prime amazon - new items arrived, come check it out!', utilService.makeLorem(70), 'user@appsus.com', 'inbox', 'My annoying boss'),
+        _createEmail('Alondai1 invited you to coding academy', utilService.makeLorem(70), 'user@appsus.com', 'inbox', 'My annoying boss')
     ]
     gEmails = emails
     console.log(gEmails);
@@ -168,7 +168,7 @@ function _createEmail(subject, body, to, mailStatus, from) {
         subject,
         body,
         isRead: false,
-        sentAt: utilService.getMonthName(new Date()),
+        sentAt: utilService.formatDate(new Date()),
         to,
         mailStatus,
         from,

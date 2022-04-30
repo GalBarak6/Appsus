@@ -48,11 +48,19 @@ export class EmailDetails extends React.Component {
         if (!email) return <React.Fragment></React.Fragment>
         this.onReadMail(email.id)
         return <section className="email-details">
-            <h4>{email.from}</h4>
-            <h2>{email.subject}</h2>
-            <h3>{email.body}</h3>
-            <button onClick={this.onDeleteEmail}><img src="./assets/icons/delete.png" alt="" /></button>
-            <img src="/assets/icons/back.png" alt="" onClick={this.onGoBack} />
+            <div>
+                <h4>From: {email.from}</h4>
+            </div>
+            <div>
+                <h2>Subject: {email.subject}</h2>
+            </div>
+            <div>
+                <h3>{email.body}</h3>
+            </div>
+            <div>
+                <img src="./assets/icons/back.png" alt="" onClick={this.onGoBack} />
+                <button onClick={this.onDeleteEmail}><img src="./assets/icons/delete.png" alt="" /></button>
+            </div>
         </section>
     }
 }

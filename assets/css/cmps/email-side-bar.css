@@ -1,15 +1,17 @@
 .email-side-bar {
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
     gap: 15px;
     flex: 1;
 }
 
+.email-side-bar>* {
+    cursor: pointer;
+}
+
 .email-side-bar img {
     height: 23px;
     width: 23px;
-    cursor: pointer;
 }
 
 .email-side-bar .add {
@@ -18,8 +20,7 @@
     justify-content: center;
     border-radius: 2rem;
     padding: 0.4em;
-    border: 2px solid black;
-    cursor: pointer;
+    border: 1.5px solid black;
 }
 
 .email-side-bar h3 {
@@ -32,7 +33,15 @@
     gap: 15px;
 }
 
+.email-side-bar>*:hover {
+    color: rgb(116, 136, 149);
+}
+
 .email-side-bar .add img {
     height: 25px;
     width: 25px;
+}
+
+.email-side-bar .count {
+    color: rgb(244, 68, 68);
 }

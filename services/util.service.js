@@ -6,6 +6,7 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    formatDate
 }
 
 function makeId(length = 6) {
@@ -61,3 +62,16 @@ function getMonthName(date) {
     return monthNames[date.getMonth()]
 }
 
+function formatDate(date) {
+    var currDate = date,
+        month = '' + (currDate.getMonth() + 1),
+        day = '' + currDate.getDate(),
+        year = currDate.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}

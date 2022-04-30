@@ -3,7 +3,7 @@
     flex-direction: column;
     padding: 20px 40px;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 40px;
 }
 
@@ -13,6 +13,12 @@
     cursor: pointer;
 }
 
-.email-details h2,h3 {
+.email-details h3 {
     font-weight: normal;
+}
+
+.email-details>* {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }

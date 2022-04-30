@@ -22,7 +22,7 @@ export class EmailCompose extends React.Component {
 
     onSendMail = (ev) => {
         ev.preventDefault()
-        console.log('sent!');
+        if (!this.state.email.to || !this.state.email.body) return
         emailService.sendEmail(this.state.email)
             .then(() => {
                 this.props.onCloseCompose()
@@ -38,13 +38,13 @@ export class EmailCompose extends React.Component {
 
     render() {
         return <section className="email-compose open slide-top">
-            <h2>New Message</h2>
+            <h2 className="title">New Message</h2>
             <form id="msg-form" onSubmit={this.onSendMail}>
                 <input type="text" placeholder="To:" name="to" onChange={this.onHandleChange} />
                 <input type="text" placeholder="Subject:" name="subject" onChange={this.onHandleChange} />
                 <textarea name="body" id="msg" form="msg-form" placeholder="Type here.."
                     onChange={this.onHandleChange}></textarea>
-                <button type="submit">Send</button>
+                <button type="submit" className="send">Send</button>
                 <button onClick={this.props.onCloseCompose} className="close-compose">X</button>
             </form>
         </section>

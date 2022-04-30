@@ -3,16 +3,33 @@
     position: fixed;
     bottom: -100px;
     right: 0;
-    width: 30em;
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
+}
+
+.email-compose .title {
+    background-color: #adb5bd;
 }
 
 #msg-form {
     display: flex;
     flex-direction: column;
+    padding-top: 8px;
+}
+
+#msg-form>*:not(:last-child) {
+    gap: 5px;
+}
+
+#msg-form input,
+textarea {
+    border: unset;
+    border-bottom: 1px solid black;
 }
 
 #msg-form textarea {
-    height: 200px;
+    height: 20rem;
     resize: none;
 }
 
@@ -25,4 +42,11 @@
     top: 0;
     right: 0;
     font-size: 1rem;
+}
+
+.email-compose .send {
+    background-color: #adb5bd;
+    color: black;
+    font-family: sansPro;
+    font-size: 1.2rem;
 }
