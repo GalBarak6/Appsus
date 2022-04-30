@@ -108,7 +108,7 @@ export class NoteEditTodos extends React.Component {
                         <div className="flex space-between">
                             <input style={style} className="no-border input-size" type=" text" name="title" placeholder="Title"
                                 value={title} onChange={this.handleChange} />
-                            <img src="./assets/icons/pin.png" onClick={this.onPin} />
+                            {/* <img src="./assets/icons/pin.png" onClick={this.onPin} /> */}
                         </div>
                         <div className="todos-list-container">
                             <TodosList todos={todos} onAddTodo={this.onAddTodo} />

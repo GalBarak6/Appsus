@@ -6,7 +6,7 @@ export const noteService = {
     saveNote,
     removeNote,
     copyNote,
-    getPinnedNotes, 
+    getPinnedNotes,
     pinNote
 }
 
@@ -21,7 +21,7 @@ function query(filterBy) {
     gNotes = notes
     _saveToStorage()
 
-    notes = notes.filter(note => note.isPinned ===false )
+    notes = notes.filter(note => note.isPinned === false)
 
     if (filterBy) {
         let { search, type } = filterBy
@@ -36,7 +36,7 @@ function query(filterBy) {
     var pinnedNotes = getPinnedNotes()
 
     console.log(notes)
-    return Promise.resolve({notes, pinnedNotes})
+    return Promise.resolve({ notes, pinnedNotes })
 }
 
 function getPinnedNotes() {
@@ -78,18 +78,18 @@ function _updateNote(noteToUpdate) {
 
 function copyNote(note) {
     console.log('copyNote')
-    const { type, info } = note
-    var copy = _createNote(type, info)
+    const { type, info, style } = note
+    var copy = _createNote(type, info, style)
     gNotes.push(copy)
     _saveToStorage()
     return Promise.resolve()
 }
 
-function pinNote(note, isPinned){
+function pinNote(note, isPinned) {
     console.log('pinNote')
     note.isPinned = isPinned
     _updateNote(note)
-    
+
 }
 
 
@@ -101,8 +101,23 @@ function _createNotes() {
             type: "note-txt",
             isPinned: true,
             info: {
-                title: 'TEST',
-                txt: "Fullstack Me Baby!"
+                title: 'MEETING',
+                txt: "15.5 At 20:30"
+            },
+            style: {
+                backgroundColor: '#42C2FF'
+            }
+        },
+        {
+            id: "n107",
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                title: 'YOGA',
+                txt: "At 20:30"
+            },
+            style: {
+                backgroundColor: '#B4FF9F'
             }
         },
 
@@ -111,8 +126,11 @@ function _createNotes() {
             type: "note-txt",
             isPinned: false,
             info: {
-                title: 'TEXT',
-                txt: "Fullstack Me Baby!Fullstack Me Baby!Fullstack Me Baby!"
+                title: 'REMINDER',
+                txt: "Pick up the cake"
+            },
+            style: {
+                backgroundColor: '#FFD59E'
             }
         },
 
@@ -120,13 +138,26 @@ function _createNotes() {
             id: "n102",
             type: "note-img",
             info: {
-                url: "http://some-img/me",
+                url: "assets/img/3.jpg",
                 title: " IMAGE Bobi and Me",
                 txt: "Image note"
             },
-            isPinned: true,
+            isPinned: false,
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: '#FF6FB5'
+            }
+        },
+        {
+            id: "n105",
+            type: "note-img",
+            info: {
+                url: "assets/img/2.jpg",
+                title: " ",
+                txt: ""
+            },
+            isPinned: false,
+            style: {
+                backgroundColor: '#FFA1A1'
             }
         },
         {
@@ -141,19 +172,55 @@ function _createNotes() {
                     { txt: "Coding power", doneAt: 187111111 }
                 ]
             },
+            isPinned: true,
+            style: {
+                backgroundColor: '#B8FFF9'
+            }
+        },
+        {
+            id: "n106",
+            type: "note-todos",
+            info: {
+                title: 'Sprint',
+                txt: "todos note",
+                label: "Get my stuff together",
+                todos: [
+                    { txt: "Todo CRUD", doneAt: null },
+                    { txt: "Add modal", doneAt: 187111111 },
+                    { txt: "Fix bugs", doneAt: 187111111 }
+                ]
+            },
+            isPinned: true,
+            style: {
+                backgroundColor: '#B8FFF9'
+            }
+        },
+
+        {
+            id: "n108",
+            type: "note-img",
+            info: {
+                url: "assets/img/4.jpg",
+                title: " ",
+                txt: ""
+            },
             isPinned: false,
-        }
+            style: {
+                backgroundColor: '#AB46D2'
+            }
+        },
     ]
     return notes
 }
 
-function _createNote(type, info, isPinned = false) {
+function _createNote(type, info, style = {}, isPinned = false) {
 
     return {
         id: utilService.makeId(),
         type,
         isPinned,
         info,
+        style
     }
 }
 
