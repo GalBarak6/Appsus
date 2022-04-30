@@ -13,6 +13,7 @@
 
 #msg-form textarea {
     height: 200px;
+    resize: none;
 }
 
 .open {

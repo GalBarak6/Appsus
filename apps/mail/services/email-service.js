@@ -5,18 +5,17 @@ export const emailService = {
     query,
     getById,
     moveMailToTrash,
-    countUnread,
     sendEmail,
     readMail,
     toggleStatus,
-    backToInbox
+    backToInbox,
+    unreadCount
 }
 
 const KEY = 'emailDB'
 
 let gEmails
 let gPrevFolder = 'inbox'
-let gDeletedMails = []
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -47,8 +46,8 @@ function query(filterBy, mailStatus) {
                 email.subject.toLowerCase().includes(search.toLowerCase()) ||
                 email.body.toLowerCase().includes(search.toLowerCase()))) &&
                 (type === 'starred' && email.isStarred ||
-                    type === 'read' && email.isread ||
-                    type === 'unread' && !email.read ||
+                    type === 'read' && email.isRead ||
+                    type === 'unread' && !email.isRead ||
                     type === 'all')
             // (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
             //     mailStatus === 'sent' && email.mailStatus === 'sent' ||
@@ -99,11 +98,6 @@ function moveMailToTrash(emailId) {
     return Promise.resolve()
 }
 
-function countUnread() {
-    let emails = _loadFromStorage()
-    emails = emails.filter(email => !email.isRead)
-    return Promise.resolve(emails.length)
-}
 
 function sendEmail(sentEmail) {
     if (sentEmail.to && sentEmail.body) {
@@ -140,6 +134,15 @@ function backToInbox(emailId) {
     gEmails = emails
     _saveToStorage()
     return Promise.resolve()
+}
+
+function unreadCount() {
+    console.log('service count');
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => !email.isRead && email.mailStatus === 'inbox')
+    console.log(emails.length);
+    const count = emails.length
+    return Promise.resolve(count)
 }
 
 function _createEmails() {

@@ -3,8 +3,7 @@
     align-items: center;
     justify-content: center;
     justify-content: space-between;
-    gap: 50px;
-    width: 100%;
+    width: 800px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
 }
 
@@ -15,7 +14,7 @@
     width: 100%;
 }
 
-.email-preview .email-container>* {
+.email-preview>* {
     border: 1px solid black;
 }
 
@@ -44,4 +43,8 @@ p {
 
 .email-preview:hover button {
     display: inline-block;
+}
+
+.email-preview:hover .date {
+    display: none;
 }

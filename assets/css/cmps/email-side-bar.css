@@ -3,13 +3,14 @@
     justify-content: flex-start;
     flex-direction: column;
     position: absolute;
-    top: 200px;
+    top: 150px;
     left: 10px;
+    gap: 15px;
 }
 
 .email-side-bar img {
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     cursor: pointer;
 }
 
@@ -18,12 +19,22 @@
     align-items: center;
     justify-content: center;
     border-radius: 2rem;
-    padding: 10px;
+    padding: 0.4em;
     border: 2px solid black;
     cursor: pointer;
 }
 
+.email-side-bar h3 {
+    font-weight: bold;
+}
+
+.email-side-bar>*:not(:first-child) {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .email-side-bar .add img {
-    height: 50px;
-    width: 50px;
+    height: 25px;
+    width: 25px;
 }

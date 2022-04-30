@@ -12,7 +12,7 @@ export class Email extends React.Component {
         emails: [],
         filterBy: null,
         mailStatus: 'inbox',
-        unread: '',
+        unread: null,
         isOpenCompose: false
     }
 
@@ -23,7 +23,7 @@ export class Email extends React.Component {
     loadEmails = () => {
         emailService.query(this.state.filterBy, this.state.mailStatus)
             .then(emails => this.setState({ emails }))
-        emailService.countUnread()
+        emailService.unreadCount()
             .then(count => this.setState({ unread: count }))
     }
 
@@ -47,7 +47,7 @@ export class Email extends React.Component {
             <EmailFilter onSetFilter={this.onSetFilter} />
             <div className="main-container">
                 <EmailList emails={emails} loadEmails={this.loadEmails} />
-                <EmailSideBar onSetFilter={this.onSetFilter} onOpenCompose={this.onOpenCompose} />
+                <EmailSideBar onSetFilter={this.onSetFilter} onOpenCompose={this.onOpenCompose} count={this.state.unread} />
             </div>
             {this.state.isOpenCompose && <EmailCompose onCloseCompose={this.onCloseCompose} loadEmails={this.loadEmails} />}
         </section>
