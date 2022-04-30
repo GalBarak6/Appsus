@@ -50,22 +50,24 @@ export class EmailPreview extends React.Component {
     render() {
         const { email } = this.props
         const subjClass = (email.isRead) ? '' : 'unread'
-        return <section className="email-preview">
-            <Link to={`/email/${email.id}`}>
-                <article className="email-container">
-                    <div>
-                        <h3 className={subjClass}>{email.from}</h3>
-                    </div>
-                    <div>
-                        <h3 className={subjClass}>{email.subject.substring(0, 50)}</h3>
-                        <p className={subjClass}>{`${email.body.substring(0, 35)}...`}</p>
-                    </div>
-                    <div className="date">
-                        <h3 className={subjClass}>{email.sentAt}</h3>
-                    </div>
-                </article>
-            </Link>
-            <div>
+        return <section className="email-preview flex space-between">
+            <div className="mail-content flex space-between">
+                <Link to={`/email/${email.id}`} className="link">
+                    <article className="email-container">
+                        <div className="from">
+                            <h4 className={subjClass}>{email.from}</h4>
+                        </div>
+                        <div className="txt flex align-center">
+                            <h4 className={subjClass}>{email.subject.substring(0, 50)}</h4>
+                            <p className={subjClass}>{`${email.body.substring(0, 20)}...`}</p>
+                        </div>
+                        <div className="date">
+                            <h4 className={subjClass}>{email.sentAt}</h4>
+                        </div>
+                    </article>
+                </Link>
+            </div>
+            <div className="icons">
                 {(email.isRead) ? <button title="Mark as unread" onClick={() => this.onToggleStatus(email.isRead)}><img src="./assets/icons/read.png" alt="" /></button>
                     : <button title="Mark as read" onClick={() => this.onToggleStatus(email.isRead)}><img src="./assets/icons/unread.png" alt="" /></button>}
                 {(email.mailStatus !== 'trash') ? <button title="Move to trash" onClick={() => this.onDeleteEmail(email.id)}><img src="./assets/icons/delete.png" alt="" /></button>

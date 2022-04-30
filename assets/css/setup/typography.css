@@ -2,3 +2,7 @@
     font-family: squarePeg;
     src: url(../../fonts/SquarePeg-Regular.ttf);
 }
+@font-face {
+    font-family: sansPro;
+    src: url(../../fonts/SourceSansPro-Regular.ttf);
+}

@@ -16,26 +16,27 @@ export class EmailSideBar extends React.Component {
 
     render() {
         return <section className="email-side-bar">
-            <div title="Send a new mail" className="add" onClick={this.props.onOpenCompose}>
-                <img src="./assets/icons/plus.png" alt="" />
-                <h4>Compose</h4>
-            </div>
-            <div onClick={this.onHandleChange}>
-                <img src="./assets/icons/inbox.png" alt="" name="inbox" />
-                <h4>Inbox</h4>
-                {(this.props.count) && <h4>{this.props.count}</h4>}
-            </div>
-            <div>
-                <img src="./assets/icons/star.png" alt="" name="star" onClick={this.onHandleChange} />
-                <h4>Starred</h4>
-            </div>
-            <div>
-                <img src="./assets/icons/sent.png" alt="" name="sent" onClick={this.onHandleChange} />
-                <h4>Sent</h4>
-            </div>
-            <div>
-                <img src="./assets/icons/delete.png" alt="" name="trash" onClick={this.onHandleChange} />
-                <h4>Trash</h4>
+                <div title="Send a new mail" className="add" onClick={this.props.onOpenCompose}>
+                    <img src="./assets/icons/plus.png" alt="" />
+                    <h4>Compose</h4>
+                </div>
+                <div onClick={this.onHandleChange}>
+                    <img src="./assets/icons/inbox.png" alt="" name="inbox" />
+                    <h4>Inbox</h4>
+                    {(this.props.count) && <h4>{this.props.count}</h4>}
+                </div>
+                <div>
+                    <img src="./assets/icons/star.png" alt="" name="star" onClick={this.onHandleChange} />
+                    <h4>Starred</h4>
+                </div>
+                <div>
+                    <img src="./assets/icons/sent.png" alt="" name="sent" onClick={this.onHandleChange} />
+                    <h4>Sent</h4>
+                </div>
+                <div>
+                    <img src="./assets/icons/delete2.png" alt="" name="trash" onClick={this.onHandleChange} />
+                    <h4>Trash</h4>
+
             </div>
         </section>
     }

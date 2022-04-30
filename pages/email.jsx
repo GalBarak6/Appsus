@@ -45,9 +45,9 @@ export class Email extends React.Component {
         const { emails } = this.state
         return <section className="email">
             <EmailFilter onSetFilter={this.onSetFilter} />
-            <div className="main-container">
-                <EmailList emails={emails} loadEmails={this.loadEmails} />
+            <div className="main-container flex">
                 <EmailSideBar onSetFilter={this.onSetFilter} onOpenCompose={this.onOpenCompose} count={this.state.unread} />
+                <EmailList emails={emails} loadEmails={this.loadEmails} />
             </div>
             {this.state.isOpenCompose && <EmailCompose onCloseCompose={this.onCloseCompose} loadEmails={this.loadEmails} />}
         </section>

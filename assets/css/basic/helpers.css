@@ -8,6 +8,15 @@
 .flex.space-between{
     justify-content: space-between;
 }
+.flex.center{
+    align-items: center;
+    justify-content: center;
+}
+
+.flex.align-center{
+    align-items: center;
+    
+}
 
 .input-size{
     width: 90%;
