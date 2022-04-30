@@ -17,7 +17,7 @@
     background-color: rgba(154, 203, 187, 0.2);
     color: lightslategrey;
     height: 35px;
-    width: 300px;
+    min-width: 300px;
     border-inline-end: 1px solid black;
 }
 

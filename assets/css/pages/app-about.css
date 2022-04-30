@@ -1,0 +1,29 @@
+.app-about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    gap: 10px;
+}
+
+.app-about img {
+    height: 35px;
+    width: 35px;
+}
+
+.app-about .main-img {
+    height: 20rem;
+    width: 40%;
+    border-radius: 10px;
+}
+
+.app-about .txt,
+.contact {
+    width: 40%;
+}
+
+.app-about .contact .contact-icons {
+    display: flex;
+    gap: 3px;
+}

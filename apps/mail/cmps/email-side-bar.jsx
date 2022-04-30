@@ -20,8 +20,8 @@ export class EmailSideBar extends React.Component {
                 <img src="./assets/icons/plus.png" alt="" />
                 <h4>Compose</h4>
             </div>
-            <div title="Inbox" onClick={this.onHandleChange }>
-                <img src="./assets/icons/inbox.png" alt="" name="inbox"/>
+            <div title="Inbox" onClick={this.onHandleChange}>
+                <img src="./assets/icons/inbox.png" alt="" name="inbox" />
                 <h4>Inbox</h4>
                 {(this.props.count) && <h5 className="count">{this.props.count}</h5>}
             </div>

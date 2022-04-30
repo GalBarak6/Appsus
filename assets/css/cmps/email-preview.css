@@ -16,10 +16,6 @@
     padding: 0 20px;
 }
 
-/* .email-preview>* {
-    border: 1px solid black;
-} */
-
 .email-preview:hover {
     background-color: rgb(189, 196, 203);
 }
@@ -29,10 +25,10 @@ p {
     font-weight: normal;
 }
 
-.email-preview p
-{
+.email-preview p {
     font-size: 0.8rem;
-} 
+    color: rgba(138, 140, 141, 0.706);
+}
 
 .email-preview .unread {
     font-weight: bold;
@@ -52,23 +48,31 @@ p {
     display: inline-block;
 }
 
-.mail-content{
-    flex:10;
-}
-.email-preview .icons{
-    flex:1
+.mail-content {
+    flex: 10;
 }
 
-.email-container .from{
-    flex:2;
+.email-preview .icons {
+    flex: 1
 }
-.email-container .txt{
-    flex:8;
-    gap: 1rem;
+
+.email-container .from {
+    flex: 2;
 }
-.email-container .date{
-    flex:2;
+
+.email-container .txt {
+    flex: 8;
+    gap: 0.7rem;
 }
-.mail-content .link{
-   width: 100%;
+
+.email-container .date {
+    flex: 1;
+}
+
+.mail-content .link {
+    width: 100%;
+}
+
+.email-container .txt p {
+    flex: 4;
 }

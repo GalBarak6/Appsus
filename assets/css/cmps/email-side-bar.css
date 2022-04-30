@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 2rem;
-    padding: 0.4em;
+    padding: 0.4em 0.2em;
     border: 1.5px solid black;
 }
 

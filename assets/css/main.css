@@ -12,29 +12,29 @@
 /* CMPS */
 
 @import './cmps/main-header.css';
-@import './cmps/main-footer.css';
+@import './cmps/email-filter.css';
+@import './cmps/email-list.css';
 @import './cmps/email-preview.css';
 @import './cmps/email-side-bar.css';
+@import './cmps/email-compose.css';
+@import './cmps/note-list.css';
 @import './cmps/note-preview.css';
 @import './cmps/note-edit.css';
 @import './cmps/note-add-txt.css';
-@import './cmps/note-list.css';
-@import './cmps/email-filter.css';
-@import './cmps/email-list.css';
-@import './cmps/user-msg.css';
 @import './cmps/note-edit-img.css';
 @import './cmps/note-edit-txt.css';
-@import './cmps/email-compose.css';
 @import './cmps/note-img.css';
 @import './cmps/note-edit-todos.css';
-@import './cmps/color-input.css';
 @import './cmps/note-txt.css';
 @import './cmps/note-todos.css';
+@import './cmps/color-input.css';
+@import './cmps/user-msg.css';
 
 
 /* PAGES */
 
 @import './pages/app-home.css';
-@import './pages/keep.css';
-@import './pages/email-details.css';
+@import './pages/app-about.css';
 @import './pages/email.css';
+@import './pages/email-details.css';
+@import './pages/keep.css';

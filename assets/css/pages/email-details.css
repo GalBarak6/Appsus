@@ -1,7 +1,7 @@
 .email-details {
     display: flex;
     flex-direction: column;
-    padding: 20px 40px;
+    padding: 20px 2rem;
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
@@ -13,12 +13,13 @@
     cursor: pointer;
 }
 
-.email-details h3 {
-    font-weight: normal;
-}
-
 .email-details>* {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.email-details .icons,
+p {
+    width: 80%;
 }

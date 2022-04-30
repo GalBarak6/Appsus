@@ -55,9 +55,9 @@ export class EmailDetails extends React.Component {
                 <h2>Subject: {email.subject}</h2>
             </div>
             <div>
-                <h3>{email.body}</h3>
+                <p>{email.body}</p>
             </div>
-            <div>
+            <div className="icons">
                 <img src="./assets/icons/back.png" alt="" onClick={this.onGoBack} />
                 <button onClick={this.onDeleteEmail}><img src="./assets/icons/delete.png" alt="" /></button>
             </div>

@@ -60,7 +60,7 @@ export class EmailPreview extends React.Component {
                         </div>
                         <div className="txt flex align-center">
                             <h4 className={subjClass}>{email.subject.substring(0, 50)}</h4>
-                            <p className={subjClass}>{`${email.body.substring(0, 20)}...`}</p>
+                            <p className={subjClass}>{`${email.body.substring(0, 50)}...`}</p>
                         </div>
                         <div className="date">
                             <h4 className={subjClass}>{email.sentAt}</h4>
