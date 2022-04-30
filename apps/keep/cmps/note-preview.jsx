@@ -15,20 +15,8 @@ export class NotePreview extends React.Component {
     }
 
     handleStyleChange = (field, value) => {
-        console.log('handleStyleChange')
-        console.log('field', field)
-        console.log('value', value)
         this.setState({ isSetColorOn: false})
         this.props.onEditColor(this.props.note,value)
-
-        // this.setState((prevState) => (
-        //     {
-        //         note: {
-        //             ...prevState.note,
-        //             style: { ...prevState.note.style, [field]: value }
-        //         }
-        //     }
-        // ))
     }
 
     onRemoveNote = () => {

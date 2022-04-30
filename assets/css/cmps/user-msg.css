@@ -2,12 +2,13 @@
     position: fixed;
     top: 80px;
     right: -100px;
-    padding: 10px 5px;
-    border: 1px solid black;
-    background-color: whitesmoke;
+    padding: 10px 20px 30px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
+    background-color: white;
+    border-radius: 8px;
     text-align: center;
-    color: black;
 }
+
 
 .user-msg button {
     position: absolute;
@@ -17,9 +18,9 @@
 }
 
 .user-msg.success {
-    background-color: #B4FF9F;
+    color: #3d9785;
 }
 
 .user-msg.danger {
-    background-color: #FFA1A1;
+    background-color: #da6b6b;
 }

@@ -72,13 +72,11 @@ export class NoteEditTxt extends React.Component {
 
         return <section style={style} className="note-edit-container" >
             <section className={"note-edit-txt " + className}>
-                {/* <div className={"note-edit-txt " }> */}
                 <form onSubmit={this.onSave}>
                     <div className="flex space-between">
                         <input style={style} className="no-border input-size" type=" text" name="title" placeholder="Title"
                             value={title} onChange={this.handleChange} />
-                        <img src="./assets/icons/pin.png" />
-                        {/* <button type="button">Pin</button> */}
+                        {/* <img src="./assets/icons/pin.png" /> */}
                     </div>
                     <div>
                         <textarea style={style} className=" no-rezise no-border textarea-size" name="txt" placeholder="Take a note..."
@@ -86,11 +84,9 @@ export class NoteEditTxt extends React.Component {
                     </div>
                     <div className="flex space-between">
                         <img src="./assets/icons/colors.png" onClick={this.onSetColorOn} />
-                        {/* <button type="button" onClick={this.onSetColor}>background</button> */}
                         <button>Close</button>
                     </div>
                 </form>
-                {/* </div> */}
             </section>
             { this.state.isSetColorOn && <ColorInput handleStyleChange={this.handleStyleChange} />}
             

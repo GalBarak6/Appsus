@@ -39,10 +39,6 @@ export class Keep extends React.Component {
     }
 
     onSaveNote = (note) => {
-        console.log('onSaveNote from keep', note)
-        console.log('selectedNote', this.state.selectedNote)
-        console.log('note.title', note.info.title)
-        console.log('note.txt', note.info.txt)
         if ((note.type === 'note-txt' && !note.info.title && !note.info.txt)) return
         if ((note.type === 'note-img' && !note.info.title && !note.info.txt)) return
 
@@ -73,14 +69,11 @@ export class Keep extends React.Component {
     }
 
     onEditColor = (note, color) => {
-        console.log('onEditColor', note)
         note.style= {'backgroundColor': color}
         this.onSaveNote(note)
-        // this.setState(prevState => ({ ...prevState, selectedNote: note }))
     }
 
     onRemoveNote = (note) => {
-        console.log('onRemoveNote', note)
         noteService.removeNote(note.id)
             .then(() => {
                 eventBusService.emit('user-msg', { type: 'success', txt: 'Note deleted successfully' })
@@ -98,7 +91,6 @@ export class Keep extends React.Component {
     }
 
     onCopy = (note) => {
-        console.log('onCopy from keep', note)
         noteService.copyNote(note)
             .then(() => {
                 eventBusService.emit('user-msg', { type: 'success', txt: 'Note copied successfully' })
@@ -109,19 +101,14 @@ export class Keep extends React.Component {
                 })
             })
         this.loadNotes()
-
-
-        this.loadNotes()
     }
 
     onPin = (note) => {
-        console.log('onPin from keep', note)
         noteService.pinNote(note, true)
         this.loadNotes()
     }
 
     onUnPin = (note) => {
-        console.log('onUnPin from keep', note)
         noteService.pinNote(note, false)
         this.loadNotes()
     }
