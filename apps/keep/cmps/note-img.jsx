@@ -6,7 +6,5 @@ export function NoteImg({ note }) {
             {/* <img src="assets/img/3.jpg" /> */}
             <img src={info.url} />
         </div>
-        {/* <div className="title">{info.title}</div>
-        <div>{info.txt}</div> */}
     </section>
 }

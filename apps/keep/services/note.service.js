@@ -139,8 +139,8 @@ function _createNotes() {
             type: "note-img",
             info: {
                 url: "assets/img/3.jpg",
-                title: " IMAGE Bobi and Me",
-                txt: "Image note"
+                title: "Hazafon",
+                txt: "Feb 2022"
             },
             isPinned: false,
             style: {
@@ -152,8 +152,8 @@ function _createNotes() {
             type: "note-img",
             info: {
                 url: "assets/img/2.jpg",
-                title: " ",
-                txt: ""
+                title: "Jonni and Lola",
+                txt: "Feb 2022"
             },
             isPinned: false,
             style: {
@@ -201,7 +201,7 @@ function _createNotes() {
             type: "note-img",
             info: {
                 url: "assets/img/4.jpg",
-                title: " ",
+                title: "So cute ",
                 txt: ""
             },
             isPinned: false,

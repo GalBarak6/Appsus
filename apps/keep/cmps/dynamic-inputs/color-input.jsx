@@ -1,4 +1,4 @@
-export function ColorInput({ type, name, handleStyleChange }) {
+export function ColorInput({ handleStyleChange }) {
     console.log('ColorInput')
     const colors = ['#42C2FF', '#85F4FF', '#B8FFF9','#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1','#FF6FB5', '#AB46D2']
 

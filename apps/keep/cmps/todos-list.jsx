@@ -7,14 +7,7 @@ export class TodosList extends React.Component {
         console.log('render todos list', todos)
 
         return <section className="todos-list">
-
-            {todos.map((todo, idx) => {
-              return  <TodoPreview key={idx} todo={todo}
-
-                />
-            }
-
-            )}
+            {todos.map((todo, idx) => {return <TodoPreview key={idx} todo={todo}/>})}
         </section>
     }
 }

@@ -10,7 +10,6 @@ export class NotePreview extends React.Component {
     }
 
     onSetColorOn = () => {
-        console.log('onSetColorOn from preview')
         this.setState({ isSetColorOn: true })
     }
 
@@ -20,7 +19,6 @@ export class NotePreview extends React.Component {
     }
 
     onRemoveNote = () => {
-        console.log('onRemoveNote', this.props.note)
         this.props.onRemoveNote(this.props.note)
     }
 
@@ -39,7 +37,6 @@ export class NotePreview extends React.Component {
                     this.onSetColorOn()
                 }} />
                 <img src="./assets/icons/delete2.png" onClick={this.onRemoveNote} />
-                {/* <button onClick={() => { this.props.onCheck(note) }}>Check</button> */}
                 <img src="./assets/icons/copy.png" onClick={() => { this.props.onCopy(note) }} />
                 <img src="./assets/icons/edit.png" onClick={() => { this.props.onEdit(note) }} />
 

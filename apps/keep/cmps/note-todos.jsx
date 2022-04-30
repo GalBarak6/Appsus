@@ -1,4 +1,4 @@
-import {NoteTodosPreview} from './note-todos-preview.jsx'
+import { NoteTodosPreview } from './note-todos-preview.jsx'
 
 export function NoteTodos({ note }) {
     const { info } = note
@@ -6,7 +6,7 @@ export function NoteTodos({ note }) {
     return <section className="note-todos">
         <div>{note.info.title}</div>
         <div>
-        {info.todos.map((todo, idx) => <NoteTodosPreview key={idx} todo={todo} />)}
+            {info.todos.map((todo, idx) => <NoteTodosPreview key={idx} todo={todo} />)}
 
         </div>
 

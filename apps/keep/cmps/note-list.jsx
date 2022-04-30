@@ -3,7 +3,6 @@ import { NotePreview } from './note-preview.jsx'
 export class NoteList extends React.Component {
 
     onRemoveNote = (note) => {
-        console.log('onRemoveNote')
         this.props.onRemoveNote(note)
     }
 

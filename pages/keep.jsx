@@ -86,10 +86,6 @@ export class Keep extends React.Component {
         this.loadNotes()
     }
 
-    onCheck = (note) => {
-        console.log('check from keep', note)
-    }
-
     onCopy = (note) => {
         noteService.copyNote(note)
             .then(() => {
