@@ -3,8 +3,8 @@
 }
 
 html {
-    /* font-family: sans-serif; */
-    font-family: sansPro;
+    font-family: sansPro, sans-serif;
+    color: var(--black-diff);
 }
 
 body {
