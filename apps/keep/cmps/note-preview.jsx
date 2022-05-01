@@ -14,8 +14,8 @@ export class NotePreview extends React.Component {
     }
 
     handleStyleChange = (field, value) => {
-        this.setState({ isSetColorOn: false})
-        this.props.onEditColor(this.props.note,value)
+        this.setState({ isSetColorOn: false })
+        this.props.onEditColor(this.props.note, value)
     }
 
     onRemoveNote = () => {
@@ -26,31 +26,38 @@ export class NotePreview extends React.Component {
         const { note } = this.props
         const { type, style } = note
         const { isPinned } = note
+        var className
+        if (type === 'note-img')  className="img-icons"
 
         return <section style={style} className="note-preview flex space-between">
             <div className="flex space-between">
-                <DynamicCmp type={type} note={note} />
+                <DynamicCmp type={type} note={note} onRemoveNote={this.onRemoveNote}
+                onEdit={this.onEdit}
+                onEditColor={this.onEditColor}
+                onCopy={this.onCopy} onPin={this.onPin} />
             </div>
 
-            <div className="icons flex space-between" >
-                <img src="./assets/icons/colors.png" onClick={() => {
-                    this.onSetColorOn()
-                }} />
-                <img src="./assets/icons/delete2.png" onClick={this.onRemoveNote} />
-                <img src="./assets/icons/copy.png" onClick={() => { this.props.onCopy(note) }} />
-                <img src="./assets/icons/edit.png" onClick={() => { this.props.onEdit(note) }} />
+            {/* {type !== 'note-img' && */}
+                <div className={"icons " + className} >
+                    <img src="./assets/icons/colors.png" onClick={() => {
+                        this.onSetColorOn()
+                    }} />
+                    <img src="./assets/icons/delete2.png" onClick={this.onRemoveNote} />
+                    <img src="./assets/icons/copy.png" onClick={() => { this.props.onCopy(note) }} />
+                    <img src="./assets/icons/edit.png" onClick={() => { this.props.onEdit(note) }} />
 
-                {isPinned && <div>
-                    <img src="./assets/icons/unpin.png" onClick={() => { this.props.onUnPin(note) }} />
-                </div>}
-                {!isPinned &&
-                    <div>
-                        <img src="./assets/icons/pin.png" onClick={() => { this.props.onPin(note) }} />
-                    </div>
-                }
-                {this.state.isSetColorOn && <ColorInput handleStyleChange={this.handleStyleChange} />}
+                    {isPinned && <div>
+                        <img src="./assets/icons/unpin.png" onClick={() => { this.props.onUnPin(note) }} />
+                    </div>}
+                    {!isPinned &&
+                        <div>
+                            <img src="./assets/icons/pin.png" onClick={() => { this.props.onPin(note) }} />
+                        </div>
+                    }
+                    {this.state.isSetColorOn && <ColorInput handleStyleChange={this.handleStyleChange} />}
 
-            </div>
+                </div>
+            {/* } */}
         </section>
     }
 }
