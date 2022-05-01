@@ -1,6 +1,5 @@
 .email-preview {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     justify-content: space-between;
@@ -16,13 +15,9 @@
     width: 100%;
 }
 
-.email-preview:hover {
-    background-color: rgb(189, 196, 203);
-}
-
 .email-preview h4 {
     font-weight: normal;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: rgb(86, 76, 76)
 }
 
@@ -31,9 +26,8 @@
 }
 
 .email-preview img {
-    background-color: none;
-    height: 21px;
-    width: 21px;
+    height: 35px;
+    width: 35px;
 }
 
 .email-preview .star {
@@ -43,10 +37,11 @@
 
 .email-preview .mail-content {
     flex: 22;
+    margin-left: 25px;
 }
 
 .email-preview.email-preview .icons {
-    flex: 2
+    flex: 2;
 }
 
 .email-preview .email-container .from {
@@ -83,6 +78,10 @@
     .email-preview {
         flex-direction: row;
         align-items: center;
+    }
+
+    .email-preview:hover {
+        background-color: rgb(189, 196, 203);
     }
 
     .email-preview img {

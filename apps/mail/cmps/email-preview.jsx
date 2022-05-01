@@ -83,7 +83,7 @@ export class EmailPreview extends React.Component {
                     </article>
                 </Link>
             </div>
-            <div className="icons">
+            <div className="icons flex">
                 {(email.isRead) ? <button title="Mark as unread" onClick={() => this.onToggleStatus(email.isRead)}><img src="./assets/icons/read.png" alt="" /></button>
                     : <button title="Mark as read" onClick={() => this.onToggleStatus(email.isRead)}><img src="./assets/icons/unread.png" alt="" /></button>}
 
