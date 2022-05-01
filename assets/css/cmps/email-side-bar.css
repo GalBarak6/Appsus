@@ -1,13 +1,14 @@
 .email-side-bar {
     display: flex;
     /* flex-direction: column; */
-    gap: 15px;
+    gap: 8px;
     flex: 1;
+    flex-wrap: wrap;
 }
 
 .email-side-bar img {
-    height: 18px;
-    width: 18px;
+    height: 21px;
+    width: 21px;
     cursor: pointer;
 }
 
@@ -23,7 +24,7 @@
 
 .email-side-bar h4 {
     color: rgb(86, 76, 76);
-    font-size: 0.8rem
+    font-size: 0.8rem;
 }
 
 .email-side-bar>*:not(:first-child) {
@@ -37,8 +38,8 @@
 }
 
 .email-side-bar .add img {
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
 }
 
 .email-side-bar .count {

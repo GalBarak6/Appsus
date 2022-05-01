@@ -87,7 +87,7 @@ export class EmailPreview extends React.Component {
                 {(email.isRead) ? <button title="Mark as unread" onClick={() => this.onToggleStatus(email.isRead)}><img src="./assets/icons/read.png" alt="" /></button>
                     : <button title="Mark as read" onClick={() => this.onToggleStatus(email.isRead)}><img src="./assets/icons/unread.png" alt="" /></button>}
 
-                <button title="Move to trash" onClick={() => this.onDeleteEmail(email.id)}><img src="./assets/icons/delete.png" alt="" /></button>
+                <button title="Move to trash" onClick={() => this.onDeleteEmail(email.id)}><img src="./assets/icons/delete2.png" alt="" /></button>
                 {email.mailStatus === 'trash' && <button title="Move back to inbox" onClick={() => this.onBackToInbox(email.id)}><img src="./assets/icons/backToInbox.png" alt="" /></button>}
             </div>
         </section>
