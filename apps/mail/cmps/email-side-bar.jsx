@@ -29,7 +29,7 @@ export class EmailSideBar extends React.Component {
             </div>
 
             <div title="Starred">
-                <img src="./assets/icons/star.png" alt="" name="star" className="folder" onClick={this.onHandleChange} />
+                <img src="./assets/icons/unstar.png" alt="" name="star" className="folder" onClick={this.onHandleChange} />
                 <h4>Starred</h4>
             </div>
 

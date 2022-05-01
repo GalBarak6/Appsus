@@ -1,13 +1,13 @@
 .email-side-bar {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 15px;
     flex: 1;
 }
 
 .email-side-bar img {
-    height: 23px;
-    width: 23px;
+    height: 18px;
+    width: 18px;
     cursor: pointer;
 }
 
@@ -16,18 +16,20 @@
     align-items: center;
     justify-content: center;
     border-radius: 2rem;
-    padding: 0.4em 0.2em;
+    padding: 0.3em;
     border: 1.5px solid black;
+    cursor: pointer;
 }
 
-.email-side-bar h3 {
-    font-weight: bold;
+.email-side-bar h4 {
+    color: rgb(86, 76, 76);
+    font-size: 0.8rem
 }
 
 .email-side-bar>*:not(:first-child) {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .email-side-bar .folder:hover {
@@ -35,10 +37,19 @@
 }
 
 .email-side-bar .add img {
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
 }
 
 .email-side-bar .count {
     color: rgb(244, 68, 68);
+    font-size: 0.7rem;
+}
+
+@media (min-width: 640px) {
+    .email-side-bar {
+        flex-direction: column;
+        gap: 15px;
+        flex: 1;
+    }
 }

@@ -5,9 +5,9 @@
     padding: 2rem;
     background-color: #adb5bd;
     font-family: squarePeg;
-    font-size: 2rem;
+    font-size: 1.5rem;
     box-shadow: inset 0px -1px 0 rgba(0, 0, 0, 0.278);
-    height: 5rem;
+    height: 3.5rem;
 }
 
 .main-header nav>*:hover {
@@ -20,4 +20,11 @@
 
 .main-header nav>*:not(last-child) {
     padding-inline-start: 15px;
+}
+
+@media (min-width: 640px) {
+    .main-header {
+        font-size: 2rem;
+        height: 5rem;
+    }
 }

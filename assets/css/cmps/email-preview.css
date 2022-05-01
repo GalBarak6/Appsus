@@ -1,36 +1,29 @@
 .email-preview {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     justify-content: space-between;
     width: 100%;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.457);
-    gap: 5px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.457);
 }
 
 .email-preview .email-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
-    gap: 0.5rem;
-    padding: 0 20px;
 }
 
 .email-preview:hover {
     background-color: rgb(189, 196, 203);
 }
 
-.email-preview h4,
-p {
+.email-preview h4 {
     font-weight: normal;
-}
-
-.email-preview p {
     font-size: 0.8rem;
-    color: rgba(138, 140, 141, 0.706);
+    color: rgb(86, 76, 76)
 }
 
 .email-preview .unread {
@@ -39,47 +32,61 @@ p {
 
 .email-preview img {
     background-color: none;
-    height: 25px;
-    width: 25px;
+    height: 15px;
+    width: 15px;
 }
 
 .email-preview button {
-    display: none;
+    opacity: 0;
 }
 
 .email-preview:hover button {
-    display: inline-block;
+    opacity: 10;
     padding-block-end: 0;
 }
 
-.mail-content {
-    flex: 10;
+.email-preview .star {
+    cursor: pointer;
+    opacity: 0;
 }
 
-.email-preview .icons {
-    flex: 1
+.email-preview:hover .star {
+    opacity: 10;
 }
 
-.email-container .from {
-    flex: 2;
+.email-preview .mail-content {
+    flex: 22;
 }
 
-.email-container .txt {
-    flex: 8;
+.email-preview.email-preview .icons {
+    flex: 2
+}
+
+.email-preview .email-container .from {
+    flex: 3;
+}
+
+.email-preview .email-container .txt {
+    flex: 15;
     gap: 0.7rem;
     flex-direction: column;
+    align-items: flex-start;
 }
 
-.email-container .date {
+.email-preview .email-container .date {
     flex: 2;
+    color: bisque;
 }
 
-.mail-content .link {
+.email-preview .mail-content .link {
     width: 100%;
 }
 
-.email-container .txt p {
+.email-preview .email-container .txt p {
     flex: 4;
+    font-size: 0.7rem;
+    color: rgba(138, 140, 141, 0.706);
+    font-weight: normal
 }
 
 
@@ -89,15 +96,19 @@ p {
 
     .email-preview {
         flex-direction: row;
+        align-items: center;
     }
 
     .email-preview .email-container {
         flex-direction: row;
+        align-items: center;
         gap: 1.5rem;
         padding: 0 20px;
     }
 
     .email-preview .email-container .txt {
         flex-direction: row;
+        align-items: center;
+        gap: 0.7rem;
     }
 }

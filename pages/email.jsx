@@ -53,4 +53,3 @@ export class Email extends React.Component {
         </section>
     }
 }
-

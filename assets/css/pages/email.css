@@ -1,4 +1,13 @@
 .email .main-container {
-    padding: 1.25rem 2rem;
-    gap: 30px;
+    padding: 0.6rem 0.5rem;
+    /* gap: 30px; */
+    flex-direction: column;
+}
+
+@media (min-width: 640px) {
+    .email .main-container {
+        padding: 1.25rem 2rem;
+        gap: 30px;
+        flex-direction: row;
+    }
 }

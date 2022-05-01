@@ -28,7 +28,7 @@ export class EmailCompose extends React.Component {
             })
             .catch(() => {
                 eventBusService.emit('user-msg', {
-                    type: 'danger', title: 'Something is wrong', txt: 'Could not send email'
+                    type: 'danger', txt: 'Email address is invalid'
                 })
             })
     }

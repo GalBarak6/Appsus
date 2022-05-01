@@ -8,8 +8,8 @@
 }
 
 .app-about img {
-    height: 35px;
-    width: 35px;
+    height: 25px;
+    width: 25px;
 }
 
 .app-about .main-img {
@@ -21,6 +21,8 @@
 .app-about .txt,
 .contact {
     width: 40%;
+    font-size: 0.9rem;
+    font-family: sansPro;
 }
 
 .app-about .contact .contact-icons {

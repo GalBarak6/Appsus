@@ -1,3 +1,4 @@
+import { eventBusService } from '../../../services/event-bus-service.js'
 import { storageService } from '../../../services/storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
@@ -9,7 +10,8 @@ export const emailService = {
     readMail,
     toggleStatus,
     backToInbox,
-    unreadCount
+    unreadCount,
+    toggleStar
 }
 
 const KEY = 'emailDB'
@@ -30,7 +32,6 @@ function query(filterBy, mailStatus) {
         _createEmails()
         _saveToStorage()
     }
-
     emails = emails.filter(email => {
         return (mailStatus === 'inbox' && email.mailStatus === 'inbox' ||
             mailStatus === 'sent' && email.mailStatus === 'sent' ||
@@ -64,14 +65,26 @@ function getById(emailId) {
 function moveMailToTrash(emailId) {
     let emails = _loadFromStorage()
     let emailIdx = emails.findIndex(email => email.id === emailId)
+    if (emails[emailIdx].mailStatus === 'trash') {
+        removeMail(emailId)
+        return Promise.resolve()
+    }
     emails[emailIdx].mailStatus = 'trash'
     gEmails = emails
     _saveToStorage()
     return Promise.resolve()
 }
 
+function removeMail(emailId) {
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => email.id !== emailId)
+    gEmails = emails
+    _saveToStorage()
+}
 
 function sendEmail(sentEmail) {
+    const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    if (!reg.test(sentEmail.to)) return Promise.reject()
     if (sentEmail.to && sentEmail.body) {
         let emails = _loadFromStorage()
         const email = _createEmail(sentEmail.subject, sentEmail.body, sentEmail.to, 'sent', 'Me')
@@ -94,6 +107,17 @@ function toggleStatus(emailId) {
     let emails = _loadFromStorage()
     let emailIdx = emails.findIndex(email => email.id === emailId)
     emails[emailIdx].isRead = !emails[emailIdx].isRead
+    gEmails = emails
+    _saveToStorage()
+    return Promise.resolve()
+}
+
+function toggleStar(emailId) {
+    let emails = _loadFromStorage()
+    let emailIdx = emails.findIndex(email => email.id === emailId)
+    if(emails[emailIdx].isStarred) emails[emailIdx].mailStatus = 'inbox'
+    else emails[emailIdx].mailStatus = 'star'
+    emails[emailIdx].isStarred = !emails[emailIdx].isStarred
     gEmails = emails
     _saveToStorage()
     return Promise.resolve()
@@ -126,8 +150,8 @@ function _createEmails() {
         _createEmail('Your steam account - confirmation', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Steam'),
         _createEmail('Thank you for your order', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Macdonalds'),
         _createEmail('Prime amazon - new items arrived, come check it out!', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Amazon'),
-        _createEmail('Alondai1 invited you to coding academy', utilService.makeLorem(150), 'user@appsus.com', 'star', 'Coding Academy'),
-        _createEmail('One in a lifetime concert', utilService.makeLorem(150), 'user@appsus.com', 'star', 'Tomorrowland'),
+        _createEmail('Alondai1 invited you to coding academy', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Coding Academy'),
+        _createEmail('One in a lifetime concert', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Tomorrowland'),
         _createEmail('New notification, come check it out!', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Facebook'),
         _createEmail('Recommended shows - just for you', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Netflix'),
         _createEmail('New alerts from your channel', utilService.makeLorem(150), 'user@appsus.com', 'inbox', 'Youtube'),
