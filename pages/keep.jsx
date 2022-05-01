@@ -25,7 +25,6 @@ export class Keep extends React.Component {
         noteService.query(this.state.filterBy)
             .then(res => {
                 const { notes, pinnedNotes } = res
-                console.log('loadNotes', notes)
                 this.setState(prevState => ({ ...prevState, notes, pinnedNotes }))
             })
     }
@@ -110,11 +109,15 @@ export class Keep extends React.Component {
     }
 
     onSetFilter = (filterBy) => {
-        console.log(filterBy);
         this.setState({ filterBy }, () => {
             console.log(this.state.filterBy);
             this.loadNotes()
         })
+    }
+
+    onDone = (note, todo) =>{
+        noteService.onDone(note, todo)
+        this.loadNotes()
     }
 
     render() {
@@ -128,6 +131,7 @@ export class Keep extends React.Component {
 
                         <NoteList notes={pinnedNotes} onRemoveNote={this.onRemoveNote}
                             onCopy={this.onCopy}
+                            onDone={this.onDone}
                             onEdit={this.onEdit}
                             onEditColor={this.onEditColor}
                             onPin={this.onPin} onUnPin={this.onUnPin} />

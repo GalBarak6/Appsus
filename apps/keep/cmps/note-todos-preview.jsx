@@ -1,11 +1,11 @@
 
 
-export function NoteTodosPreview({ todo }) {
-  
-        console.log('TodoPreview', todo)
-        return <section className="note-todos-preview">
-            <input type="checkbox" id="checkbox" />
-            <label htmlFor="checkbox" >{todo.txt}</label>
-        </section>
-    
+export function NoteTodosPreview({ note, todo, onDone }) {
+    var className
+    if (todo.doneAt) className = "done"
+    return <section className="note-todos-preview">
+        <input type="checkbox" id="checkbox" onChange={() => { onDone(note, todo) }} />
+        <label htmlFor="checkbox" className={"todo-label " + className} onClick={() => { onDone(note, todo) }}>{todo.txt}</label>
+    </section>
+
 }

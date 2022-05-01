@@ -1,14 +1,15 @@
 .note-preview {
-    /* padding: 15px; */
     width: 240px;
     max-width: 240px;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.457);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    /* gap: 15px; */
     position: relative;
-    /* align-self: flex-start; */
+}
+
+.note-preview.imgs {
+    align-self: flex-start;
 }
 
 
@@ -29,12 +30,12 @@
     display: flex;
     justify-content: space-between;
     opacity: 0;
-    
+
 }
 
 .note-preview .icons:hover {
     opacity: 1;
-    
+
 }
 
 .note-preview .icons.img-icons {
@@ -43,13 +44,7 @@
     gap: 2em;
 }
 
-
-
-.debug {
-    outline: black;
-}
-
-@media (max-width: 580px) {
+@media (max-width: 640px) {
     .note-preview {
         max-width: 90%;
         width: 90%;

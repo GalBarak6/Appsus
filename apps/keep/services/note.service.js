@@ -7,7 +7,8 @@ export const noteService = {
     removeNote,
     copyNote,
     getPinnedNotes,
-    pinNote
+    pinNote,
+    onDone
 }
 
 const KEY = 'noteDB'
@@ -25,8 +26,6 @@ function query(filterBy) {
 
     if (filterBy) {
         let { search, type } = filterBy
-        console.log(search);
-        console.log(type);
         notes = notes.filter(note => {
             return ((note.info.title.toLowerCase().includes(search.toLowerCase()) ||
                 note.info.txt.toLowerCase().includes(search.toLowerCase())
@@ -34,8 +33,6 @@ function query(filterBy) {
         })
     }
     var pinnedNotes = getPinnedNotes()
-
-    console.log(notes)
     return Promise.resolve({ notes, pinnedNotes })
 }
 
@@ -45,7 +42,6 @@ function getPinnedNotes() {
 }
 
 function saveNote(note) {
-    console.log('saveNote from service')
     if (note.id) _updateNote(note)
     else _addNote(note)
     return Promise.resolve()
@@ -54,8 +50,6 @@ function saveNote(note) {
 function _addNote(note) {
     note.id = utilService.makeId()
     gNotes.push(note)
-    console.log('_addNote', note)
-    console.log('_addNote', gNotes)
     _saveToStorage()
 }
 
@@ -67,7 +61,6 @@ function removeNote(noteId) {
 }
 
 function _updateNote(noteToUpdate) {
-    console.log('updateNote')
     gNotes = gNotes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
     _saveToStorage()
 }
@@ -84,6 +77,13 @@ function pinNote(note, isPinned) {
     note.isPinned = isPinned
     _updateNote(note)
 
+}
+
+function onDone(note, todo) {
+    const todoIdx = note.info.todos.findIndex(todoNew => todo.txt === todoNew.txt)
+    if (!todo.doneAt) note.info.todos[todoIdx].doneAt = Date.now()
+    else note.info.todos[todoIdx].doneAt = ''
+    _updateNote(note)
 }
 
 

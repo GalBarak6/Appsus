@@ -9,17 +9,16 @@ export class NoteList extends React.Component {
     render() {
 
         const { notes } = this.props
-        console.log('render list', notes)
-
         return <section className="note-list">
             {notes.map(note => <NotePreview key={note.id} note={note}
-                onRemoveNote={this.onRemoveNote} 
+                onRemoveNote={this.onRemoveNote}
                 onEdit={this.props.onEdit}
+                onDone={this.props.onDone}
                 onEditColor={this.props.onEditColor}
-                onCheck={this.props.onCheck} onCopy={this.props.onCopy} 
-                onPin={this.props.onPin} onUnPin={this.props.onUnPin}/>
-                
-                )}
+                onCheck={this.props.onCheck} onCopy={this.props.onCopy}
+                onPin={this.props.onPin} onUnPin={this.props.onUnPin} />
+
+            )}
         </section>
     }
 }

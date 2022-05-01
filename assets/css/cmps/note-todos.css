@@ -4,3 +4,7 @@
     gap: 0.7rem;
     padding: 15px;
 }
+
+.note-todos .todo-label.done{
+    text-decoration: line-through;
+}

@@ -10,9 +10,10 @@
     justify-content: center;
     align-content: center;
     border-radius: 8px;
-     width: 100%;
-     min-height: 100px;
-     /* border: 1px solid black; */
+    width: 100%;
+    min-height: 100px;
+    /* border: 1px solid black; */
+    align-self: flex-start;
 }
 
 .note-img .img-container img{

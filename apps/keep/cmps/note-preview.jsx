@@ -26,19 +26,23 @@ export class NotePreview extends React.Component {
         const { note } = this.props
         const { type, style } = note
         const { isPinned } = note
-        var className
-        if (type === 'note-img')  className="img-icons"
+        var className, classNameIcons
+        if (type === 'note-img') {
+            className = "imgs"
+            classNameIcons="img-icons"
+        }
 
-        return <section style={style} className="note-preview flex space-between">
+        return <section style={style} className={"note-preview flex space-between "+ className}>
             <div className="flex space-between">
                 <DynamicCmp type={type} note={note} onRemoveNote={this.onRemoveNote}
                 onEdit={this.onEdit}
                 onEditColor={this.onEditColor}
+                onDone={this.props.onDone}
                 onCopy={this.onCopy} onPin={this.onPin} />
             </div>
 
             {/* {type !== 'note-img' && */}
-                <div className={"icons " + className} >
+                <div className={"icons " + classNameIcons} >
                     <img src="./assets/icons/colors.png" onClick={() => {
                         this.onSetColorOn()
                     }} />

@@ -11,3 +11,9 @@
 .pinned-notes{
     margin-bottom: 40px;
 }
+
+@media (max-width: 580px) {
+    .note-app{
+        padding: 0rem;
+    }
+}
