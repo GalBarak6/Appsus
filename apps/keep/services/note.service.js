@@ -41,9 +41,7 @@ function query(filterBy) {
 
 function getPinnedNotes() {
     var notes = gNotes.filter(note => note.isPinned)
-    console.log('getPinnedNotes', notes)
     return notes
-    // return Promise.resolve(notes)
 }
 
 function saveNote(note) {
@@ -72,12 +70,9 @@ function _updateNote(noteToUpdate) {
     console.log('updateNote')
     gNotes = gNotes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
     _saveToStorage()
-    // return Promise.resolve()
-
 }
 
 function copyNote(note) {
-    console.log('copyNote')
     const { type, info, style } = note
     var copy = _createNote(type, info, style)
     gNotes.push(copy)
@@ -86,7 +81,6 @@ function copyNote(note) {
 }
 
 function pinNote(note, isPinned) {
-    console.log('pinNote')
     note.isPinned = isPinned
     _updateNote(note)
 
@@ -99,7 +93,7 @@ function _createNotes() {
         {
             id: "n101",
             type: "note-txt",
-            isPinned: true,
+            isPinned: false,
             info: {
                 title: 'MEETING',
                 txt: "15.5 At 20:30"
@@ -142,9 +136,10 @@ function _createNotes() {
                 title: "Hazafon",
                 txt: "Feb 2022"
             },
-            isPinned: false,
+            isPinned: true,
             style: {
-                backgroundColor: '#FF6FB5'
+                // backgroundColor: '#FF6FB5'
+                backgroundColor: ''
             }
         },
         {
@@ -174,7 +169,7 @@ function _createNotes() {
             },
             isPinned: true,
             style: {
-                backgroundColor: '#B8FFF9'
+                backgroundColor: '#FF6FB5'
             }
         },
         {

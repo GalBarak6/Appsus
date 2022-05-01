@@ -69,7 +69,7 @@ export class Keep extends React.Component {
     }
 
     onEditColor = (note, color) => {
-        note.style= {'backgroundColor': color}
+        note.style = { 'backgroundColor': color }
         this.onSaveNote(note)
     }
 
@@ -123,12 +123,21 @@ export class Keep extends React.Component {
         return <section className="note-app">
             <NoteFilter onSetFilter={this.onSetFilter} />
             <NoteEdit onSaveNote={this.onSaveNote} />
-            <NoteList notes={pinnedNotes} onRemoveNote={this.onRemoveNote}
-                onCopy={this.onCopy}
-                onEdit={this.onEdit}
-                onEditColor={this.onEditColor}
-                onPin={this.onPin} onUnPin={this.onUnPin} />
-            <hr></hr>
+            {pinnedNotes &&
+                    <div className="pinned-notes">
+
+                        <NoteList notes={pinnedNotes} onRemoveNote={this.onRemoveNote}
+                            onCopy={this.onCopy}
+                            onEdit={this.onEdit}
+                            onEditColor={this.onEditColor}
+                            onPin={this.onPin} onUnPin={this.onUnPin} />
+
+                    </div>
+            }
+
+            {/* <hr></hr> */}
+            {/* <div className="gap"></div> */}
+
             <NoteList notes={notes} onRemoveNote={this.onRemoveNote}
                 onCheck={this.onCheck}
                 onEdit={this.onEdit}

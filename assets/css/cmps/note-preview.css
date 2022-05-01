@@ -1,12 +1,14 @@
 .note-preview {
-    padding: 15px;
-    max-width: 200px;
+    /* padding: 15px; */
+    width: 240px;
+    max-width: 240px;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.457);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    /* gap: 15px; */
     position: relative;
+    /* align-self: flex-start; */
 }
 
 
@@ -14,12 +16,51 @@
     font-weight: bold;
 }
 
+/* ICONS */
 .note-preview img {
     height: 1rem;
     width: 1rem;
     cursor: pointer;
 }
 
-.note-preview .icons{
-    gap:1rem;
+.note-preview .icons {
+    padding: 15px;
+    gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    
+}
+
+.note-preview .icons:hover {
+    opacity: 1;
+    
+}
+
+.note-preview .icons.img-icons {
+    position: absolute;
+    bottom: 0;
+    gap: 2em;
+}
+
+
+
+.debug {
+    outline: black;
+}
+
+@media (max-width: 580px) {
+    .note-preview {
+        max-width: 90%;
+        width: 90%;
+    }
+
+    .note-preview .icons {
+        justify-content: start;
+    }
+
+    .note-preview .icons:hover {
+        gap: 1em;
+    }
+
 }
